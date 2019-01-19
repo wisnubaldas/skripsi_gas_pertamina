@@ -1,7 +1,6 @@
 .DS_Store
 assets/*
 application/cache/*
-application/config/database.php
 !application/cache/index.html
 
 application/logs/*
