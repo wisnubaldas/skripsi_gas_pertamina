@@ -1,16 +1,14 @@
 ## Aplikasi POS
-**
-Link download untuk asset : [http://www.mediafire.com/file/ziga81qpz088852/assets.rar/file](http://www.mediafire.com/file/ziga81qpz088852/assets.rar/file)
-
 **Pos_aWs**
 >Aplikasi POS menggunakan Codeigniter Framework
->
- - Struktur folder :
-	application
-	asset
-	apps
-	system
-	vendor
-    
+Link download untuk asset : [http://www.mediafire.com/file/ziga81qpz088852/assets.rar/file](http://www.mediafire.com/file/ziga81qpz088852/assets.rar/file)
+extract assets.rar pada folder asset, kalo ngga ada foldernya bikin sendiri lah, sehingga struktur nya foldernya seperti ini:
+assets
+-->css
+-->frontend
+-->img
+-->js
+-->plugins
 
-> Folder apps di isi file-file asset untuk keperluan frontend !
+
+
