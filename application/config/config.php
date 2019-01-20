@@ -23,20 +23,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-// $config['base_url'] = '';
-$protocol = is_https() ? "https://" : "http://";
-$host = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : "";
-if(is_cli()){
-    $config['base_url'] = '';
-}elseif(stristr($host, "localhost") !== FALSE ||
-        (stristr($host, '192.168.') !== FALSE) ||
-        (stristr($host, '10.2.') !== FALSE) ||
-        (stristr($host,'127.0.0') !== FALSE))
-{
-    $config['base_url'] = $protocol.$host."/cas";
-}else{
-    $allowed_hosts = ['192.168.88.22:8080'];
-    $config['base_url'] = in_array($host, $allowed_hosts) ? $protocol.$host."/" : "we-do-not-recognise-this-".$host;
+// $config['base_url'] = 'https://149.129.218.10/';
+$domain = $_SERVER['HTTP_HOST'];
+$domain .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
+$config['base_url'] = "http://" . $domain;
+if (!empty($_SERVER['HTTPS'])) {
+	$config['base_url'] = "https://" . $domain;
 }
 
 /*
@@ -50,6 +42,9 @@ if(is_cli()){
 |
 */
 $config['index_page'] = '';
+
+
+//$config['default_access_map'] = array("view", "create", "edit", "delete", "publish");
 
 /*
 |--------------------------------------------------------------------------
@@ -338,7 +333,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'holladespacito';
 
 /*
 |--------------------------------------------------------------------------

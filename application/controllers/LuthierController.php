@@ -10,7 +10,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class LuthierController extends MX_Controller
+class LuthierController extends CI_Controller
 {
     /**
      * Luthier CI fake index method

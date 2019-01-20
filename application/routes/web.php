@@ -1,11 +1,14 @@
 <?php
 
-Route::get('/', 'homeController@index')->name('homepage');
+Route::auth(FALSE);
+Route::get('/', 'LandingController@index')->name('index');
 
-Route::group('front', ['namespace' => 'front'], function(){
-    Route::get('home','sendingSatuanMulti@index')->name('home');
-    Route::get('sending','sendingSatuanMulti@index')->name('sending');
-});
+// Route::group('front',['namespace' => 'front'],function(){
+// 	Route::get('track','TrackingController@index')->name('track');
+// 	Route::get('get_data','TrackingController@get_data');
+// });
+
+// Route::post('api/{token}','ApiController@index',['namespace' => 'backend']);
 
 Route::set('404_override', function(){
     show_404();
