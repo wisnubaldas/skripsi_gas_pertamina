@@ -3,6 +3,7 @@
 	$headerMenu = (!empty($headerMenu)) ? $headerMenu : '';
 	$hiddenSearch = (!empty($headerLanguageBar)) ? 'hidden-xs' : '';
 	$headerMegaMenu = (!empty($headerMegaMenu)) ? $headerMegaMenu : ''; 
+	$guest = ci()->simple_auth->isGuest();
 @endphp
 <!-- begin #header -->
 <div id="header" class="header {{ $headerClass }}">

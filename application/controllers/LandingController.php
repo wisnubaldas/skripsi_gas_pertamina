@@ -5,12 +5,22 @@ class LandingController extends MX_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		 $this->config->load('sidebar');
+		$this->barang = modules::load('pos/BarangController');
+		$this->kategori = modules::load('pos/KategoryController');
+		$this->merk = modules::load('pos/MerekController');
 	}
 
 	public function index()
 	{
-		$this->blade_view->render('landing',$this->config->config['sidebar']);
+		$barang = json_decode($this->barang->all_barang()['data']);
+		$kategori = json_decode($this->kategori->all_kategori()['data']);
+		$merk = json_decode($this->merk->all_merk()['data']);
+		$data['data'] = [
+							"barang"=>$barang->recordsTotal,
+							"kategori"=>$kategori->recordsTotal,
+							"merk"=>$merk->recordsTotal
+						];
+		$this->blade_view->render('landing',$data);
 	}
 
 }

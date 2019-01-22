@@ -33,8 +33,9 @@
 		<ul class="nav">
 			<li class="nav-header">Navigation</li>
 			@php
-				$currentUrl = '/'.base_url();
-				
+				ci()->config->load('sidebar');
+				$menu_data = ci()->config->config['sidebar'];
+				$currentUrl = uri_string();
 				function renderSubMenu($value, $currentUrl) {
 					$subMenu = '';
 					$GLOBALS['sub_level'] += 1 ;
@@ -64,9 +65,10 @@
 						if (!empty($GLOBALS['active'][$currentLevel])) {
 							$active = 'active';
 						}
+						// dump(base_url($menu['url']));
 						$subMenu .= '
 							<li class="'. $hasSub .' '. $active .'">
-								<a href="'. $menu['url'] .'">'. $hasCaret . $hasTitle . $hasHighlight .'</a>
+								<a href="'. base_url($menu['url']) .'">'. $hasCaret . $hasTitle . $hasHighlight .'</a>
 								'. $subSubMenu .'
 							</li>
 						';
@@ -74,7 +76,7 @@
 					return $subMenu;
 				}
 				
-				foreach ($menu as $key => $menu) {
+				foreach ($menu_data['menu'] as $key => $menu) {
 					$GLOBALS['parent_active'] = '';
 					
 					$hasSub = (!empty($menu['sub_menu'])) ? 'has-sub' : '';
