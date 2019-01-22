@@ -1,14 +1,15 @@
 <?php
 
-Route::get('/', 'homeController@index')->name('homepage');
+Route::auth(FALSE);
 
-Route::group('front', ['namespace' => 'front'], function(){
-    Route::get('home','sendingSatuanMulti@index')->name('home');
-    Route::get('sending','sendingSatuanMulti@index')->name('sending');
+Route::get('/', 'LandingController@index')->name('index');
+Route::group('pos',['namespace' => 'pos','middleware' => ['SimpleAuthMiddleware']],function(){
+	Route::resource('barang','BarangController');
+	Route::resource('merek','MerekController');
+	Route::resource('kategori','KategoryController');
+	Route::resource('penjualan','PenjualanController');
 });
-
 Route::set('404_override', function(){
     show_404();
 });
-
 Route::set('translate_uri_dashes',FALSE);
