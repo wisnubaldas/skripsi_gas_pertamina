@@ -20,6 +20,9 @@ $hook['pre_system'][] = function(){
     $whoops->register();
 };
 
+$dotenv = Dotenv\Dotenv::create(FCPATH);
+$dotenv->load();
+
 //$hook['post_controller_constructor'] = array(
 //    'class' => 'EzRbacHook',
 //    'function' => 'accessCheck',

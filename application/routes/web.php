@@ -2,7 +2,7 @@
 
 Route::auth(FALSE);
 
-Route::get('/', 'LandingController@index')->name('index');
+Route::get('/', 'DashboardController@index')->name('index');
 Route::group('pos',['namespace' => 'pos','middleware' => ['SimpleAuthMiddleware']],function(){
 	Route::resource('barang','BarangController');
 	Route::resource('merek','MerekController');
