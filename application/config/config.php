@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -24,12 +23,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 // $config['base_url'] = 'https://149.129.218.10/';
-$domain = $_SERVER['HTTP_HOST'];
-$domain .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
-$config['base_url'] = "http://" . $domain;
-if (!empty($_SERVER['HTTPS'])) {
-	$config['base_url'] = "https://" . $domain;
+if(is_cli())
+{
+	$config['base_url'] = 'http://localhost/';
+}else{
+		$domain = $_SERVER['HTTP_HOST'];
+		$domain .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
+		$config['base_url'] = "http://" . $domain;
+		if (!empty($_SERVER['HTTPS'])) {
+			$config['base_url'] = "https://" . $domain;
+		}
 }
+
+
+
 
 /*
 |--------------------------------------------------------------------------

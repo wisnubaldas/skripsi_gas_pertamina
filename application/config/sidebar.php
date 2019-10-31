@@ -7,14 +7,14 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => 'pos/barang',
+				'url' => '#',
 				'title' => 'Barang'
 			],[
-				'url' => 'pos/merek',
+				'url' => '#',
 				'title' => 'Merk'
 			],
 			[
-				'url' => 'pos/kategori',
+				'url' => '#',
 				'title' => 'Kategory'
 			]]
 		],
@@ -24,7 +24,7 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => 'pos/penjualan',
+				'url' => '#',
 				'title' => 'Penjualan'
 			]]
 		]
