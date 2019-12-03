@@ -35,3 +35,4 @@ Setup
 -   Buka broser aplikasi localhost, sesuaikan dengan nama project yang di buat, 
     ```http://localhost/skripsi/tracking``` login dengan user ```admin@admin.com``` dan password ```admin```
     
+    <img src="https://github.com/wisnubaldas/skripsi_tracking/blob/master/tracjk.png">
