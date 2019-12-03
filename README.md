@@ -1,7 +1,19 @@
 Tracking
 -------
+<div align="center">
+    <img src="https://raw.githubusercontent.com/frappe/erpnext/develop/erpnext/public/images/erpnext-logo.png" height="128">
+    <h2>Aplikasi Boilerplate CI dengan CeBok</h2>
+    <p align="center">
+        <p>ERP made simple</p>
+    </p>
 
-Aplikasi Boilerplate CI dengan CeBok
+[![Build Status](https://travis-ci.com/frappe/erpnext.svg)](https://travis-ci.com/frappe/erpnext)
+[![Open Source Helpers](https://www.codetriage.com/frappe/erpnext/badges/users.svg)](https://www.codetriage.com/frappe/erpnext)
+[![Coverage Status](https://coveralls.io/repos/github/frappe/erpnext/badge.svg?branch=develop)](https://coveralls.io/github/frappe/erpnext?branch=develop)
+
+[https://erpnext.com](https://erpnext.com)
+
+</div>
 
 Setup
 =====
