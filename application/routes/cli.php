@@ -9,8 +9,7 @@
 // To enable Luthier-CI built-in cli commands
 // uncomment the followings lines:
 
-Luthier\Cli::maker();
-Luthier\Cli::migrations();
+
 // Route::cli('seed/{name}', function($name){
 //     Route::cli($name, 'SeederController@'.$name);
 // });
@@ -18,5 +17,7 @@ Route::group('seed', function(){
      Route::cli('{name}', 'SeederController@index');
 });
 
-Route::cli('import','TrackingController@import',['namespace' => 'backend']);
-Route::cli('export','TrackingController@export',['namespace' => 'backend']);
+// Route::cli('import','TrackingController@import',['namespace' => 'backend']);
+// Route::cli('export','TrackingController@export',['namespace' => 'backend']);
+Luthier\Cli::maker();
+Luthier\Cli::migrations();

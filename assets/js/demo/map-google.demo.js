@@ -10,8 +10,8 @@ var handleGoogleMapSetting = function() {
 	var mapDefault;
 	
 	var mapOptions = {
-		zoom: 6,
-		center: new google.maps.LatLng(-33.397, 145.644),
+		zoom: 11,
+		center: new google.maps.LatLng(-6.21462, 106.84513),
 		mapTypeId: google.maps.MapTypeId.ROADMAP,
 		disableDefaultUI: true,
 	};

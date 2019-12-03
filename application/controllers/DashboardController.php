@@ -11,7 +11,7 @@ class DashboardController extends CI_Controller {
 
 	public function index()
 	{
-		return $this->blade_view->render('template.dashboard-v2');
+		return $this->blade_view->render('template.map-dashboard');
 	}
 
 }

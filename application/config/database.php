@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-$active_group = 'default';
+$active_group = env('DB_GROUP');
 $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> '',

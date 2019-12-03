@@ -14,14 +14,15 @@ $config['auth_login_route']  = 'login';
 
 $config['auth_logout_route'] = 'logout';
 
-$config['auth_login_route_redirect'] = 'front';
+$config['auth_login_route_redirect'] = 'homepage';
 
-$config['auth_logout_route_redirect'] = 'homepage';
+$config['auth_logout_route_redirect'] = 'login';
 
 $config['auth_route_auto_redirect'] = [
 
     # The following routes will redirect to the 'auth_login_route_redirect' if
     # the user is logged in:
+    'homepage',
     'login',
     'signup',
     'password_reset',
