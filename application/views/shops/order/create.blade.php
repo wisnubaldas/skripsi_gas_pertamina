@@ -36,23 +36,20 @@ if(ci()->session->flashdata('msg')){
             </div>
         @endif
 		<div class="panel-body">
-            <form action="{{route('product.create')}}" method="POST">
+            <form action="{{route('master.courier.create')}}" method="POST">
                 <fieldset>
                     <div class="row">
                         @for ($i = 0; $i < count($formInput); $i++)
-                            @if ($formInput[$i] !== 'id')
-                                <div class="col-4">
-                                    <div class="form-group">
-                                    <label for="{{$formInput[$i]}}">{{strtoupper(str_replace('_',' ',$formInput[$i]))}}</label>
-                                        <input type="text" name="{{$formInput[$i]}}" class="form-control" />
-                                    </div>
+                            <div class="col-4">
+                                <div class="form-group">
+                                <label for="{{$formInput[$i]}}">{{ucfirst($formInput[$i])}}</label>
+                                    <input type="text" name="{{$formInput[$i]}}" class="form-control" />
                                 </div>
-                            @endif
-                           
+                            </div>
                         @endfor
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary m-r-5">Save</button>
-                    <a href="{{route('product')}}" class="btn btn-sm btn-default">Cancel</a>
+                    <a href="{{route('master.courier')}}" class="btn btn-sm btn-default">Cancel</a>
                 </fieldset>
             </form>
 		</div>

@@ -44,10 +44,10 @@
         <h4 class="panel-title">Edit Data</h4>
 		</div>
 		<div class="panel-body">
-        <form action="{{route('master.courier.edit',$customer->id)}}" method="POST">
+        <form action="{{route('product.edit',$field->id)}}" method="POST">
             <fieldset>
                 <div class="row">
-                    @foreach ($customer->toArray() as $i => $a)
+                    @foreach ($field->toArray() as $i => $a)
                         @if ($i !== 'id')
                             <div class="col-4">
                                 <div class="form-group">
@@ -59,7 +59,7 @@
                     @endforeach
                 </div>
                 <button type="submit" class="btn btn-sm btn-primary m-r-5">Save</button>
-                <a href="{{route('master.courier')}}" class="btn btn-sm btn-default">Cancel</a>
+                <a href="{{route('product')}}" class="btn btn-sm btn-default">Cancel</a>
             </fieldset>
         </form>
 		</div>

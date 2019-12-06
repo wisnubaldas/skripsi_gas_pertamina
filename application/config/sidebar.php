@@ -19,7 +19,7 @@ $config['sidebar'] = [
 				'title' => 'Courier'
 			],
 			[
-				'url' => '/master/products',
+				'url' => '/master/product',
 				'title' => 'Produk'
 			]]
 		],
@@ -29,8 +29,8 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => '#',
-				'title' => 'Penjualan'
+				'url' => 'shops/order',
+				'title' => 'Order'
 			]]
 		]
 	]

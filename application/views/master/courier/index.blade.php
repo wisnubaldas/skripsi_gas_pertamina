@@ -6,6 +6,7 @@
 	if(ci()->session->flashdata('msg')){
 		$alert = ci()->session->flashdata('msg');
 	}
+	function rpucStr(string $s){ return str_replace('_',' ',strtoupper($s)); }
 @endphp
 	
 @section('content')
@@ -54,13 +55,9 @@
                 <table id="data-table-combine" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama</th>
-							<th scope="col">Wrapping Message</th>
-							<th scope="col">Firstname</th>
-							<th scope="col">Lastname</th>
-							<th scope="col">Email</th>
-							<th scope="col">Tlp</th>
+                            @foreach ($kolom as $item)
+								<th scope="col">{{rpucStr($item)}}</th>
+							@endforeach
 							<th scope="col">#</th>
 							<th scope="col">#</th>
                           </tr>
@@ -103,10 +100,10 @@
 				serverSide: true,
 				ajax: g,
 				responsive: true,
-				autoFill: true,
-				colReorder: true,
-				keys: true,
-				rowReorder: true,
+				// autoFill: true,
+				// colReorder: true,
+				// keys: true,
+				// rowReorder: true,
 				select: true
 			});
 

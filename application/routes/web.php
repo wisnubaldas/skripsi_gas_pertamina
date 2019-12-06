@@ -1,8 +1,9 @@
 <?php
+
 Route::get('/', function(){
     redirect('/login');
 });
-
+// $this->encrypt->encode($msg);
 Route::auth(FALSE);
 Route::get('/homepage', 'DashboardController@index',['middleware' => ['SimpleAuthMiddleware']])->name('homepage');
 Route::group('master',['namespace' => 'master','middleware' => ['SimpleAuthMiddleware']],function(){
@@ -21,11 +22,20 @@ Route::group('master',['namespace' => 'master','middleware' => ['SimpleAuthMiddl
 	Route::group('product', function(){
 		Route::get('/','ProductController@index')->name('product');
 		Route::get('{id}/'.hash("gost", 'delete'),'ProductController@delete')->name('product.delete');
-		Route::match(['GET', 'POST'],'/'.hash("gost", 'create'),'ProductController@create')->name('productcreate');
+		Route::match(['GET', 'POST'],'/'.hash("gost", 'create'),'ProductController@create')->name('product.create');
 		Route::match(['GET', 'POST'],'/{id}/'.hash("gost", 'edit'),'ProductController@edit')->name('product.edit');
-		Route::get(hash("sha256", 'couriercourier'),'ProductController@grid')->name('product.grid');
+		Route::get(hash("sha256", 'product'),'ProductController@grid')->name('product.grid');
 	});
 });
+
+Route::group('shops',['namespace' => 'shops','middleware' => ['SimpleAuthMiddleware']],function(){
+	Route::group('order', function()
+	{
+		Route::get('/','OrderController@index')->name('order');
+	});
+
+});
+
 Route::set('404_override', function(){
     show_404();
 });

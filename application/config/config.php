@@ -340,7 +340,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = 'holladespacito';
+$config['encryption_key'] = 'wisnu baldas brekele lu, cibai';
 
 /*
 |--------------------------------------------------------------------------

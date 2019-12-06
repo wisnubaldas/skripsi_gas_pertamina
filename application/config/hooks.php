@@ -14,6 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $hook = Luthier\Hook::getHooks([
     'modules' => [ 'auth' , 'debug' ]
 ]);
+
 $hook['pre_system'][] = function(){
     $whoops = new Whoops\Run;
     $whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());

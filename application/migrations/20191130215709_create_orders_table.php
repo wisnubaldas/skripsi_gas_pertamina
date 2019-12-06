@@ -1,82 +1,99 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+use Faker\Factory as Faker;
 class Migration_create_orders_table extends CI_Migration
 {
+    
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Customers');
+    }
+    
     public function up()
     {
         try {
-            $this->db->query("DROP TABLE IF EXISTS orders");
-            $this->db->query("
-                CREATE TABLE orders (
-                id int(11) NOT NULL auto_increment,
-                invoice_number varchar(10) default NULL,
-                customers_id int(11) NOT NULL,
-                customers_name varchar(64) NOT NULL,
-                customers_company varchar(32) default NULL,
-                customers_street_address varchar(64) NOT NULL,
-                customers_suburb varchar(32) default NULL,
-                customers_city varchar(32) NOT NULL,
-                customers_postcode varchar(10) NOT NULL,
-                customers_state varchar(32) default NULL,
-                customers_state_code varchar(32) default NULL,
-                customers_country varchar(64) NOT NULL,
-                customers_country_iso2 char(2) NOT NULL,
-                customers_country_iso3 char(3) NOT NULL,
-                customers_telephone varchar(32) NOT NULL,
-                customers_email_address varchar(96) NOT NULL,
-                customers_address_format varchar(255) NOT NULL,
-                customers_ip_address varchar(15) default NULL,
-                delivery_name varchar(64) NOT NULL,
-                delivery_company varchar(32) default NULL,
-                delivery_street_address varchar(64) NOT NULL,
-                delivery_suburb varchar(32) default NULL,
-                delivery_city varchar(32) NOT NULL,
-                delivery_postcode varchar(10) NOT NULL,
-                delivery_state varchar(32) default NULL,
-                delivery_zone_id int(11) NOT NULL,
-                delivery_state_code varchar(32) default NULL,
-                delivery_country_id int(11) NOT NULL,
-                delivery_country varchar(64) NOT NULL,
-                delivery_country_iso2 char(2) NOT NULL,
-                delivery_country_iso3 char(3) NOT NULL,
-                delivery_address_format varchar(255) NOT NULL,
-                delivery_telephone varchar(32) NOT NULL,
-                billing_name varchar(64) NOT NULL,
-                billing_company varchar(32) default NULL,
-                billing_street_address varchar(64) NOT NULL,
-                billing_suburb varchar(32) default NULL,
-                billing_city varchar(32) NOT NULL,
-                billing_postcode varchar(10) NOT NULL,
-                billing_state varchar(32) default NULL,
-                billing_zone_id int(11) NOT NULL,
-                billing_state_code varchar(32) default NULL,
-                billing_country_id int(11) NOT NULL,
-                billing_country varchar(64) NOT NULL,
-                billing_country_iso2 char(2) NOT NULL,
-                billing_country_iso3 char(3) NOT NULL,
-                billing_address_format varchar(255) NOT NULL,
-                billing_telephone varchar(32) NOT NULL,
-                payment_method varchar(255) NOT NULL,
-                payment_module varchar(255) NOT NULL,
-                uses_store_credit tinyint(1) NOT NULL,
-                store_credit_amount decimal(15,4) NOT NULL,
-                last_modified datetime default NULL,
-                date_purchased datetime default NULL,
-                orders_status int(5) NOT NULL,
-                customers_comment text,
-                admin_comment text,
-                orders_date_finished datetime default NULL,
-                currency char(3) default NULL,
-                currency_value decimal(14,6) default NULL,
-                invoice_date datetime default NULL,
-                tracking_no varchar(64) default NULL,
-                gift_wrapping TINYINT(1) NOT NULL,
-                wrapping_message TEXT NOT NULL, 
-                PRIMARY KEY  (id)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8
-            ");
+            $this->dbforge->drop_table('orders',TRUE);
+            $this->dbforge->add_field(array(
+                'id' => array(
+                        'type' => 'INT',
+                        'constraint' => 100,
+                        'unsigned' => TRUE,
+                        'auto_increment' => TRUE
+                ),
+                'invoice_number' => array(
+                    'type' => 'INT',
+                    'constraint' => 100,
+                    'unsigned' => TRUE,
+                ),
+                'customers_id' => array(
+                    'type' => 'INT',
+                    'constraint' => 100,
+                    'unsigned' => TRUE,
+                ),
+                'delivery_name' => array(
+                        'type' => 'VARCHAR',
+                        'constraint' => '100',
+                ),
+                'delivery_company' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'delivery_street_address' => array(
+                        'type' => 'TEXT',
+                        'null' => TRUE,
+                ),
+                'delivery_city' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'delivery_postcode' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'delivery_state' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'delivery_phone' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'billing_name' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'billing_company' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'billing_street_address' => array(
+                    'type' => 'TEXT',
+                    'null' => TRUE,
+                ),
+                'payment_method' => array(
+                    'type' => 'TEXT',
+                    'null' => TRUE,
+                ),
+                'lat' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+                'long' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
+            ));
+            $this->dbforge->add_key('id', TRUE);
+            $this->dbforge->add_key('customers_id');
+            $this->dbforge->create_table('orders');
+        
+            // create data dummy
+        for ($i=0; $i < 100; $i++) { 
+            $this->generateData();
+        }
+
         } catch (\Throwable $th) {
             echo 'Message: ' .$th->getMessage();
         }
@@ -85,6 +102,48 @@ class Migration_create_orders_table extends CI_Migration
 
     public function down()
     {
-        $this->db->query("DROP TABLE orders");
+        $this->dbforge->drop_table('orders',TRUE);
+    }
+
+    protected function generateData()
+    {
+        try {
+            $faker = Faker::create('id_ID');
+            $invoice_number = 'INV-'.$faker->numberBetween($min = 1000, $max = 900000).date('Ymd');
+            $customers_id = $faker->numberBetween($min = 1, $max = 100);
+            $delivery_name = $faker->name($gender = 'male'|'female');
+            $delivery_company = $faker->company;
+            $delivery_street_address = $faker->address;
+            $delivery_city = $faker->city;
+            $delivery_postcode = $faker->postcode;
+            $delivery_state = $faker->state;
+            $delivery_phone = $faker->e164PhoneNumber;
+            $billing_name = $faker->name;
+            $billing_company = $faker->company;
+            $billing_street_address = $faker->address;
+            $payment_method = $faker->randomElement(['cash','credit']);
+            $lat = $faker->latitude($min = -6.21462, $max = 106.84513);
+            $long = $faker->longitude($min = -6.21462, $max = 106.84513);
+            $dd = compact('invoice_number',
+            'customers_id',
+            'delivery_name',
+            'delivery_company',
+            'delivery_street_address',
+            'delivery_city',
+            'delivery_postcode',
+            'delivery_state',
+            'delivery_phone',
+            'billing_name',
+            'billing_company',
+            'billing_street_address',
+            'payment_method',
+            'lat',
+            'long');
+            $this->db->insert('orders', $dd);
+        } catch (\Throwable $th) {
+            dump($th);
+        }
+        
+        
     }
 }

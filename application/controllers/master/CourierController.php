@@ -12,12 +12,13 @@ class CourierController extends CI_Controller {
 
 	public function index()
 	{
-		return $this->blade_view->render('master.courier.index');
+		$kolom = $this->Couriers->kolom;
+		return $this->blade_view->render('master.courier.index',compact('kolom'));
 	}
 	public function create()
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'GET'){
-			$formInput = ['id','name','wrapping_message','firstname','lastname','email_address','telephone'];
+			$formInput = $this->Couriers->kolom;
 			return $this->blade_view->render('master.courier.create',compact('formInput'));
 		}
 		else if ($this->input->server('REQUEST_METHOD') == 'POST'){
@@ -40,7 +41,6 @@ class CourierController extends CI_Controller {
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'GET'){
 			$courier = $this->Couriers
-					->select(['id','gender','firstname','lastname','email_address','default_address','telephone','credits'])
 					->find($id);
 			return $this->blade_view->render('master.courier.edit',compact('courier'));
 		}
@@ -59,7 +59,7 @@ class CourierController extends CI_Controller {
 	public function grid()
     {
         $j = $this->griddata
-                ->field(['id','name','wrapping_message','firstname','lastname','email_address','telephone'])
+                ->field($this->Couriers->kolom)
 				->table('couriers')
                 ->add('edit',function($data){
                     return '<a href="'. route('master.courier.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';
@@ -67,7 +67,6 @@ class CourierController extends CI_Controller {
                 ->add('delete',function($data){
                     return '<a href="'.route('master.courier.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
 				})
-				->hide('lastname')
                 ->generate();
         $this->output
                 ->set_content_type('application/json')
