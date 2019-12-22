@@ -58,8 +58,7 @@
 						@foreach ($th as $i)
 							  <th scope="col">{{str_replace('_',' ',strtoupper($i))}}</th>
 						@endforeach
-							<th scope="col">#</th>
-							<th scope="col">#</th>
+							<th scope="col">Action :</th>
 					  </tr>
 					</thead>
 					<tbody>

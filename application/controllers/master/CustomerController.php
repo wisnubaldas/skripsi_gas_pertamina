@@ -61,14 +61,15 @@ class CustomerController extends CI_Controller {
 	public function customersGrid()
     {
         $j = $this->griddata
-                ->field(['id','firstname','lastname','email_address','default_address','telephone'])
+                ->field(['id','company','lastname','email_address','default_address','telephone'])
 				->table('customers')
-                ->add('edit',function($data){
-                    return '<a href="'. route('master.customer.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';
+                ->add('action',function($data){
+                	$btn = '<div class="btn-group">';
+                    $btn .= '<a href="'. route('master.customer.edit',$data['id']).'" class="btn btn-warning btn-xs m-b-2">Edit</a>';
+                    $btn .= '<a href="'.route('master.customer.delete',$data['id']).'" class="btn btn-danger btn-xs m-b-2">Delete</a>';
+                    $btn .= '</div>';
+                    return $btn;
                 })
-                ->add('delete',function($data){
-                    return '<a href="'.route('master.customer.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
-				})
 				->hide('lastname')
                 ->generate();
         $this->output

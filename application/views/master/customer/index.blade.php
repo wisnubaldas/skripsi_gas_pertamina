@@ -55,18 +55,17 @@
                         <thead>
                           <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Nama</th>
+                            <th scope="col">Nama Perusahaan</th>
 							<th scope="col">Email</th>
 							<th scope="col">Alamat</th>
 							<th scope="col">Tlp</th>
-							<th scope="col">#</th>
 							<th scope="col">#</th>
                           </tr>
                         </thead>
                         <tbody>
                             
                         </tbody>
-			</table>
+				</table>
 			
 		</div>
 	</div>

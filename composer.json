@@ -32,7 +32,8 @@
         "filp/whoops": "^2.3",
         "vlucas/phpdotenv": "^3.6",
         "mbezhanov/faker-provider-collection": "^1.2",
-        "ozdemir/datatables": "^2.2"
+        "ozdemir/datatables": "^2.2",
+        "nesbot/carbon": "^1.39.1"
     },
     "suggest": {
         "paragonie/random_compat": "Provides better randomness in PHP 5.x"

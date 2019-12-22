@@ -6,12 +6,14 @@ class DashboardController extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Orders');
 		
 	}
 
 	public function index()
 	{
-		return $this->blade_view->render('template.map-dashboard');
+		$jmlOrder = $this->Orders->count();
+		return $this->blade_view->render('template.dashboard-v2',compact('jmlOrder'));
 	}
 
 }

@@ -11,7 +11,7 @@
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<img src="/assets/img/user/user-13.jpg" alt="" />
+						<img src="{{base_url('/assets/img/user/user-13.jpg')}}" alt="" />
 					</div>
 					<div class="info">
 						<b class="caret pull-right"></b>
@@ -35,7 +35,7 @@
 			@php
 				ci()->config->load('sidebar');
 				$menu_data = ci()->config->config['sidebar'];
-				$currentUrl = uri_string();
+				$currentUrl = base_url(uri_string());
 				function renderSubMenu($value, $currentUrl) {
 					$subMenu = '';
 					$GLOBALS['sub_level'] += 1 ;
@@ -68,7 +68,7 @@
 						// dump(base_url($menu['url']));
 						$subMenu .= '
 							<li class="'. $hasSub .' '. $active .'">
-								<a href="'. base_url($menu['url']) .'">'. $hasCaret . $hasTitle . $hasHighlight .'</a>
+								<a href="'.$menu['url'].'">'. $hasCaret . $hasTitle . $hasHighlight .'</a>
 								'. $subSubMenu .'
 							</li>
 						';

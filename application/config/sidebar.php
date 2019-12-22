@@ -12,26 +12,57 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => '/master/customer',
-				'title' => 'Customer'
+				'url' => route('master.customer'),
+				'title' => 'Pangkalan'
 			],[
-				'url' => '/master/courier',
-				'title' => 'Courier'
+				'url' => route('master.courier'),
+				'title' => 'Angkutan Tabung Gas'
 			],
-			[
-				'url' => '/master/product',
-				'title' => 'Produk'
-			]]
+			// [
+			// 	'url' => route('product'),
+			// 	'title' => 'Produk'
+			// ]
+			]
 		],
 		[
-			'icon' => 'fa fa-gift',
-			'title' => 'Jualan',
+			'icon' => 'fa fa-cubes',
+			'title' => 'Form Transaction',
 			'url' => 'javascript:;',
 			'caret' => true,
-			'sub_menu' => [[
-				'url' => 'shops/order',
-				'title' => 'Order'
-			]]
+			'sub_menu' => [
+				[
+					'url' => route('order'),
+					'title' => 'Notif Gas Pertamina'
+				],
+				[
+					'url' => route('pengisian'),
+					'title' => 'Jadwal Pengisian Gas'
+				],
+				[
+					'url' => route('distribusi.create'),
+					'title' => 'Distribusi Gas Pangkalan'
+				],
+				[
+					'url' => route('distribusi'),
+					'title' => 'Notif Eceran Pangkalan'
+				],
+			]
+		],
+		[
+			'icon' => 'fa fa-flag',
+			'title' => 'Form Report',
+			'url' => 'javascript:;',
+			'caret' => true,
+			'sub_menu' => [
+				[
+					'url' => '#',
+					'title' => 'Rekap Gas Pertamina'
+				],
+				[
+					'url' => '#',
+					'title' => 'Distribusi Pangkalan'
+				],
+			]
 		]
 	]
 ];

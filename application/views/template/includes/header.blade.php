@@ -9,7 +9,7 @@
 <div id="header" class="header {{ $headerClass }}">
 	<!-- begin navbar-header -->
 	<div class="navbar-header">
-		<a href="{{route('homepage')}}" class="navbar-brand"><span class="navbar-logo"></span> <b>PoS</b> aWs</a>
+		<a href="{{route('homepage')}}" class="navbar-brand"><span class="navbar-logo"></span> <b>{{env('APP_NAME')}}</b> Apps</a>
 		@if (!$sidebarHide)
 		<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 			<span class="icon-bar"></span>
@@ -62,7 +62,7 @@
 				<li class="media">
 					<a href="javascript:;">
 						<div class="media-left">
-							<img src="/assets/img/user/user-1.jpg" class="media-object" alt="" />
+							<img src="{{base_url('/assets/img/user/user-1.jpg')}}" class="media-object" alt="" />
 							<i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
 						</div>
 						<div class="media-body">
@@ -75,7 +75,7 @@
 				<li class="media">
 					<a href="javascript:;">
 						<div class="media-left">
-							<img src="/assets/img/user/user-2.jpg" class="media-object" alt="" />
+							<img src="{{base_url('/assets/img/user/user-2.jpg')}}" class="media-object" alt="" />
 							<i class="fab fa-facebook-messenger text-primary media-object-icon"></i>
 						</div>
 						<div class="media-body">
@@ -137,7 +137,7 @@
 		<li class="dropdown navbar-user">
 			@if(!$guest)
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="{{base_url('assets/img/user/user-13.jpg')}}" alt="" />
+					<img src="{{base_url('assets/img/user/user-11.jpg')}}" alt="" />
 					<span class="d-none d-md-inline">{{ci()->simple_auth->user()->first_name}}</span> <b class="caret"></b>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">

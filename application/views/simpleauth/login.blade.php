@@ -1,10 +1,13 @@
 @extends('template.layouts.empty', ['paceTop' => true])
 
 @section('title', 'Login Page')
-
+@php
+	$num = "assets/img/login-bg/login-bg-".rand(1,18).".jpg";
+@endphp
 @section('content')
+
 	<div class="login-cover">
-	    <div class="login-cover-image" style="background-image: url({{base_url('assets/img/login-bg/login-bg-18.jpg')}})" data-id="login-cover-image"></div>
+	    <div class="login-cover-image" style="background-image: url({{base_url($num)}})" data-id="login-cover-image"></div>
 	    <div class="login-cover-bg"></div>
 	</div>
 	<!-- begin login -->
@@ -12,7 +15,7 @@
 		<!-- begin brand -->
 		<div class="login-header">
 			<div class="brand">
-				<span class="logo"></span> <b>PoS</b> aWs
+				<span class="logo"></span> <b>Inventory</b> Gas
 				<small>silahkan login untuk memulai aplikasi</small>
 			</div>
 			<div class="icon">

@@ -1,12 +1,12 @@
 @extends('template.layouts.default')
 
-@section('title', 'Dashboard V2')
+@section('title', 'Dashboard')
 
 @push('css')
-	<link href="/assets/plugins/nvd3/nvd3.min.css" rel="stylesheet" />
-	<link href="/assets/plugins/jquery-jvectormap/jquery-jvectormap.min.css" rel="stylesheet" />
-	<link href="/assets/plugins/bootstrap-calendar/css/bootstrap_calendar.css" rel="stylesheet" />
-	<link href="/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />
+	<link href="{{base_url('assets/plugins/nvd3/nvd3.min.css" rel="stylesheet')}}" />
+	<link href="{{base_url('assets/plugins/jquery-jvectormap/jquery-jvectormap.min.css')}}" rel="stylesheet" />
+	<link href="{{base_url('assets/plugins/bootstrap-calendar/css/bootstrap_calendar.css')}}" rel="stylesheet" />
+	<link href="{{base_url('assets/plugins/gritter/css/jquery.gritter.css')}}" rel="stylesheet" />
 @endpush
 
 @section('content')
@@ -14,11 +14,10 @@
 	<ol class="breadcrumb pull-right">
 		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
 		<li class="breadcrumb-item"><a href="javascript:;">Dashboard</a></li>
-		<li class="breadcrumb-item active">Dashboard v2</li>
 	</ol>
 	<!-- end breadcrumb -->
 	<!-- begin page-header -->
-	<h1 class="page-header">Dashboard v2 <small>header small text goes here...</small></h1>
+	<h1 class="page-header">Dashboard <small>{{env('APP_NAME')}}</small></h1>
 	<!-- end page-header -->
 	<!-- begin row -->
 	<div class="row">
@@ -27,10 +26,10 @@
 			<div class="widget widget-stats bg-gradient-green">
 				<div class="stats-icon stats-icon-lg"><i class="fa fa-globe fa-fw"></i></div>
 				<div class="stats-content">
-					<div class="stats-title">TODAY'S VISITS</div>
-					<div class="stats-number">7,842,900</div>
+					<div class="stats-title">ORDER TODAY'S</div>
+					<div class="stats-number">{{$jmlOrder}}</div>
 					<div class="stats-progress progress">
-						<div class="progress-bar" style="width: 70.1%;"></div>
+						<div class="progress-bar" style="width: {{$jmlOrder/100*100}}%;"></div>
 					</div>
 					<div class="stats-desc">Better than last week (70.1%)</div>
 				</div>
@@ -153,7 +152,7 @@
 						<div class="left">
 							<span class="date-time">yesterday 11:23pm</span>
 							<a href="javascript:;" class="name">Sowse Bawdy</a>
-							<a href="javascript:;" class="image"><img alt="" src="../assets/img/user/user-12.jpg" /></a>
+							<a href="javascript:;" class="image"><img alt="" src="{{base_url('assets/img/user/user-12.jpg')}}" /></a>
 							<div class="message">
 								Lorem ipsum dolor sit amet, consectetuer adipiscing elit volutpat. Praesent mattis interdum arcu eu feugiat.
 							</div>
@@ -161,7 +160,7 @@
 						<div class="right">
 							<span class="date-time">08:12am</span>
 							<a href="javascript:;" class="name"><span class="label label-primary">ADMIN</span> Me</a>
-							<a href="javascript:;" class="image"><img alt="" src="../assets/img/user/user-13.jpg" /></a>
+							<a href="javascript:;" class="image"><img alt="" src="{{base_url('assets/img/user/user-13.jpg')}}" /></a>
 							<div class="message">
 								Nullam posuere, nisl a varius rhoncus, risus tellus hendrerit neque.
 							</div>
@@ -169,7 +168,7 @@
 						<div class="left">
 							<span class="date-time">09:20am</span>
 							<a href="javascript:;" class="name">Neck Jolly</a>
-							<a href="javascript:;" class="image"><img alt="" src="../assets/img/user/user-10.jpg" /></a>
+							<a href="javascript:;" class="image"><img alt="" src="{{base_url('assets/img/user/user-10.jpg')}}" /></a>
 							<div class="message">
 								Euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
 							</div>
@@ -177,7 +176,7 @@
 						<div class="left">
 							<span class="date-time">11:15am</span>
 							<a href="javascript:;" class="name">Shag Strap</a>
-							<a href="javascript:;" class="image"><img alt="" src="../assets/img/user/user-14.jpg" /></a>
+							<a href="javascript:;" class="image"><img alt="" src="{{base_url('assets/img/user/user-14.jpg')}}" /></a>
 							<div class="message">
 								Nullam iaculis pharetra pharetra. Proin sodales tristique sapien mattis placerat.
 							</div>
@@ -230,56 +229,56 @@
 				</div>
 				<ul class="registered-users-list clearfix">
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-5.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-5.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Savory Posh
 							<small>Algerian</small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-3.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-3.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Ancient Caviar
 							<small>Korean</small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-1.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-1.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Marble Lungs
 							<small>Indian</small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-8.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-8.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Blank Bloke
 							<small>Japanese</small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-2.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-2.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Hip Sculling
 							<small>Cuban</small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-6.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-6.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Flat Moon
 							<small>Nepalese</small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-4.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-4.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Packed Puffs
 							<small>Malaysian></small>
 						</h4>
 					</li>
 					<li>
-						<a href="javascript:;"><img src="../assets/img/user/user-9.jpg" alt="" /></a>
+						<a href="javascript:;"><img src="{{base_url('assets/img/user/user-9.jpg')}}" alt="" /></a>
 						<h4 class="username text-ellipsis">
 							Clay Hike
 							<small>Swedish</small>
@@ -300,12 +299,12 @@
 
 
 @push('scripts')
-	<script src="/assets/plugins/nvd3/nvd3.min.js"></script>
-	<script src="/assets/plugins/jquery-jvectormap/jquery-jvectormap.min.js"></script>
-	<script src="/assets/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js"></script>
-	<script src="/assets/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js"></script>
-	<script src="/assets/plugins/gritter/js/jquery.gritter.js"></script>
-	<script src="/assets/js/demo/dashboard-v2.js"></script>
+	<script src="{{base_url('assets/plugins/nvd3/nvd3.min.js')}}"></script>
+	<script src="{{base_url('assets/plugins/jquery-jvectormap/jquery-jvectormap.min.js')}}"></script>
+	<script src="{{base_url('assets/plugins/jquery-jvectormap/jquery-jvectormap-world-merc-en.js')}}"></script>
+	<script src="{{base_url('assets/plugins/bootstrap-calendar/js/bootstrap_calendar.min.js')}}"></script>
+	<script src="{{base_url('assets/plugins/gritter/js/jquery.gritter.js')}}"></script>
+	<script src="{{base_url('assets/js/demo/dashboard-v2.js')}}"></script>
 	<script>
 		$(document).ready(function() {
 			DashboardV2.init();

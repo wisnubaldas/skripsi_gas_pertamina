@@ -58,8 +58,7 @@
                             @foreach ($kolom as $item)
 								<th scope="col">{{rpucStr($item)}}</th>
 							@endforeach
-							<th scope="col">#</th>
-							<th scope="col">#</th>
+							<th scope="col">Action :</th>
                           </tr>
                         </thead>
                         <tbody>

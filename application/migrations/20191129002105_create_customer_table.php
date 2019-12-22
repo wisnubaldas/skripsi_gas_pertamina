@@ -12,6 +12,7 @@ class Migration_create_customer_table extends CI_Migration
             $this->db->query("DROP TABLE IF EXISTS customers");
             $this->db->query("CREATE TABLE customers (
                 id int(11) NOT NULL auto_increment,
+                company text(200) NOT NULL,
                 user_id int(11) default NULL,
                 groups_id int(11) default NULL,
                 gender char(1) default NULL,
@@ -34,7 +35,7 @@ class Migration_create_customer_table extends CI_Migration
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 
         // create data dummy
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 20; $i++) { 
             $this->generateData();
         }
         
@@ -52,6 +53,7 @@ class Migration_create_customer_table extends CI_Migration
     protected function generateData()
     {
         $faker = Faker::create('id_ID');
+        $company = $faker->company; 
         $user_id = 1; 
         $groups_id = 1; 
         $gender = $faker->randomElement(['m','f']); 
@@ -59,7 +61,7 @@ class Migration_create_customer_table extends CI_Migration
         $lastname = $faker->lastName; 
         $dob = date('Y-m-d H:i:s',strtotime('now')); 
         $email_address = $firstname.'@'.$faker->freeEmailDomain; 
-        $default_address = 'Jl.'.$faker->streetName.', '.$faker->address; 
+        $default_address = 'Jl.'.$faker->streetName.', '.$faker->address;
         $telephone = $faker->e164PhoneNumber; 
         $fax = $faker->PhoneNumber;
         $newsletter = 1; 
@@ -71,8 +73,10 @@ class Migration_create_customer_table extends CI_Migration
         $date_account_created = date('Y-m-d H:i:s',strtotime('now'));
         $date_account_last_modified = date('Y-m-d H:i:s',strtotime('now'));
         $this->db->query("
-            INSERT INTO `customers`(`user_id`, `groups_id`, `gender`, `firstname`, `lastname`, `dob`, `email_address`, `default_address`, `telephone`, `fax`, `newsletter`, `status`, `ip_address`, `credits`, `date_last_logon`, `number_of_logons`, `date_account_created`, `date_account_last_modified`) VALUES 
-            ('{$user_id}', 
+            INSERT INTO `customers`(`company`,`user_id`, `groups_id`, `gender`, `firstname`, `lastname`, `dob`, `email_address`, `default_address`, `telephone`, `fax`, `newsletter`, `status`, `ip_address`, `credits`, `date_last_logon`, `number_of_logons`, `date_account_created`, `date_account_last_modified`) VALUES 
+            (
+            '{$company}',
+            '{$user_id}', 
             '{$groups_id}',
             '{$gender}',
             '{$firstname}', 

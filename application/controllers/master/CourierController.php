@@ -61,12 +61,13 @@ class CourierController extends CI_Controller {
         $j = $this->griddata
                 ->field($this->Couriers->kolom)
 				->table('couriers')
-                ->add('edit',function($data){
-                    return '<a href="'. route('master.courier.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';
+                ->add('action',function($data){
+                	$btn = '<div class="btn-group">';
+                    $btn .= '<a href="'. route('master.courier.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';
+                    $btn .= '<a href="'.route('master.courier.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
+                    $btn .= '</div>';
+                    return $btn;
                 })
-                ->add('delete',function($data){
-                    return '<a href="'.route('master.courier.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
-				})
                 ->generate();
         $this->output
                 ->set_content_type('application/json')

@@ -63,11 +63,12 @@ class ProductController extends CI_Controller {
                 ->field($this->fields)
 				->table('products')
                 ->add('edit',function($data){
-                    return '<a href="'. route('product.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';
+                    $btn = '<div class="btn-group">';
+                    $btn .= '<a href="'. route('product.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';
+                    $btn .= '<a href="'.route('product.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
+                    $btn .= '</div>';
+                    return $btn;
                 })
-                ->add('delete',function($data){
-                    return '<a href="'.route('product.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
-				})
 				// ->hide('lastname')
 				->generate();
         $this->output

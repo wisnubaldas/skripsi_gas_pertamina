@@ -23,7 +23,7 @@
 	<!-- end page-header -->
 	
 	<!-- begin panel -->
-	<div class="panel panel-primary">
+	<div class="panel panel-success">
 		<div class="panel-heading">
 			<div class="panel-heading-btn">
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
@@ -34,7 +34,19 @@
 			<h4 class="panel-title">List of Order</h4>
 		</div>
 		<div class="panel-body">
-			
+			<table id="data-table-combine" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+						@foreach ($kolom as $i)
+							<th scope="col">{{str_replace('_',' ',strtoupper($i))}}</th>
+						@endforeach
+						<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+			</table>
 		</div>
 	</div>
 	<!-- end panel -->
@@ -62,7 +74,7 @@
 	<script src="{{base_url('/assets/plugins/datatables/js/responsive/dataTables.responsive.js')}}"></script>
 	<script src="{{base_url('/assets/plugins/datatables/js/responsive/responsive.bootstrap4.js')}}"></script>
 	<script>
-		const g = "{{route('courier.grid')}}"
+		const g = "{{route('order.grid')}}"
 		$(document).ready(function() {
 			$('#data-table-combine').DataTable({
 				processing: true,
