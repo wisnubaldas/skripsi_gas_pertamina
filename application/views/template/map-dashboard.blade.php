@@ -29,8 +29,7 @@
 @endpush
 
 @push('scripts')
-	{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNagMtWFXyL_l7oEk2HOEreMXZI5fCm94&sensor=false&callback=initMap"></script> --}}
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCApyk0QwI3JjB9CNmwU9x82W7hkcSHW7w&callback=initMap"
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_API')}}&callback=initMap"
 	type="text/javascript"></script>
 	<script src="{{base_url('/assets/js/demo/map-google.demo.js')}}"></script>
 	<script>
