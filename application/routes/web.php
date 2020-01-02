@@ -35,6 +35,11 @@ Route::group('master',['namespace' => 'master','middleware' => ['SimpleAuthMiddl
 		Route::match(['GET', 'POST'],'/{id}/'.hash("gost", 'edit'),'ProductController@edit')->name('product.edit');
 		Route::get(hash("sha256", 'product'),'ProductController@grid')->name('product.grid');
 	});
+	Route::group(sha_url('user'), function(){
+		Route::resource('user','UserController');
+		Route::get('grid','UserController@grid')->name('user.grid');
+	});
+	
 });
 
 Route::group(sha_url('shops'),['namespace' => 'shops','middleware' => ['SimpleAuthMiddleware']],function(){
