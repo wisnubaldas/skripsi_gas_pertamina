@@ -18,10 +18,10 @@ $config['sidebar'] = [
 				'url' => route('master.courier'),
 				'title' => 'Angkutan Tabung Gas'
 			],
-			// [
-			// 	'url' => route('product'),
-			// 	'title' => 'Produk'
-			// ]
+			[
+				'url' => route('user.index'),
+				'title' => 'User Config'
+			]
 			]
 		],
 		[
