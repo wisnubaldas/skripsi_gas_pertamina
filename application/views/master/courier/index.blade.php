@@ -55,9 +55,10 @@
                 <table id="data-table-combine" class="table table-striped table-bordered">
                         <thead>
                           <tr>
-                            @foreach ($kolom as $item)
-								<th scope="col">{{rpucStr($item)}}</th>
-							@endforeach
+							<th scope="col">No</th>
+							<th scope="col">Nama</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Angkutan</th>
 							<th scope="col">Action :</th>
                           </tr>
                         </thead>

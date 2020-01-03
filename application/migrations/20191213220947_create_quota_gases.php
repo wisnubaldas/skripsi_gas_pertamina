@@ -71,7 +71,7 @@ class Migration_create_quota_gases extends CI_Migration
             $tgl = $tgl;
             $composisi = $faker->numberBetween($min = 100, $max = 500);
             $satuan = 'KG';
-            $ket = 'dasdasdasdasdasdasd';
+            $ket = $faker->sentence($nbWords = 10, $variableNbWords = true);
             $dd = compact('tgl',
             'composisi',
             'satuan',

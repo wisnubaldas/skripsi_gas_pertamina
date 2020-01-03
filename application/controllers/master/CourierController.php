@@ -67,7 +67,8 @@ class CourierController extends CI_Controller {
                     $btn .= '<a href="'.route('master.courier.delete',$data['id']).'" class="btn btn-sm btn-danger m-b-2">Delete</a>';
                     $btn .= '</div>';
                     return $btn;
-                })
+				})
+				->hide('users_id')->hide('wrapping_message')->hide('firstname')->hide('lastname')->hide('email')
                 ->generate();
         $this->output
                 ->set_content_type('application/json')

@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     @elseif($item == 'user_id')
-                                        
+                                    @elseif($item == 'status')
                                     @elseif($item == 'courier_id')
                                     <div class="col-4">
                                         <div class="form-group">
@@ -126,37 +126,39 @@
 <script src="{{base_url('assets/plugins/select2/dist/js/select2.min.js')}}"></script>
 	<script>
         jQuery(function() {
-            let k = 0
             $(".default-select2").select2();
             $('.note-danger').fadeOut(6000);
-            $('#datepicker-autoClose').datepicker({
+            
+                let k = 0
+                $('#datepicker-autoClose').datepicker({
                     todayHighlight: true,
                     autoclose: true,
                     dateFormat: "yy-mm-dd"
-            }).on('changeDate', function(e) {
-                    $.ajax({
-                        url: "{{route('pengisian.getQuota')}}",
-                        data:{tanggal:$(this).val()},
-                        method: "POST",
-                        beforeSend: function(e) {
+                }).on('changeDate', function(e) {
+                        $.ajax({
+                            url: "{{route('pengisian.getQuota')}}",
+                            data:{tanggal:$(this).val()},
+                            method: "POST",
+                            beforeSend: function(e) {
 
-                                    }
-                        })
-                        .done(function(a) {
-                            a.forEach(el => {
-                                k += el.composisi
+                                        }
+                            })
+                            .done(function(a) {
+                                a.forEach(el => {
+                                    k += el.composisi
+                                });
+                                // console.log(k)
+                                $('#qp').text(k)
+                                // alert( "success" );
+                            })
+                            .fail(function() {
+                                alert( "error" );
+                            })
+                            .always(function() {
+                                // alert( "complete" );
                             });
-                            // console.log(k)
-                            $('#qp').text(k)
-                            // alert( "success" );
-                        })
-                        .fail(function() {
-                            alert( "error" );
-                        })
-                        .always(function() {
-                            // alert( "complete" );
-                        });
-                }); // end date
+                    }); // end date
+
             $('input[name=composisi]').on('keyup',function(){
                 let l = $(this).val();
                 if(!isNaN(l))
