@@ -16,7 +16,7 @@ class PengisianController extends CI_Controller {
     {   
         return $this->blade_view->render('shops.pengisian.index',$this->atribute());
     }
-    public function create()
+    public function create($date = null)
     {   
         if ($this->input->server('REQUEST_METHOD') == 'POST'){
             
@@ -47,8 +47,13 @@ class PengisianController extends CI_Controller {
                             redirect(route('pengisian'));
                     }
         } // end post
+
         $data = $this->atribute();
         $data['kurir'] = $this->Couriers->select(['name','id','email'])->get();
+        if($date)
+        {
+            $data['tglDefault'] = $date;
+        }
         return $this->blade_view->render('shops.pengisian.create',$data);
     }
     protected function atribute()
@@ -106,7 +111,7 @@ class PengisianController extends CI_Controller {
                     }
                     return $data['status'];
                 })
-        ->hide('user_id')
+        ->hide('user_id')->hide('id')
         ->generate();
         $this->output
                 ->set_content_type('application/json')
@@ -115,24 +120,27 @@ class PengisianController extends CI_Controller {
 
     protected function kurangin_stok_gas($jml,$date)
     {
+        
         $date = strtotime($date);
         $x = $this->QuotaGas->whereYear('tgl','=',date('Y',$date))
                     ->whereMonth('tgl','=',date('m',$date))
                     ->get();
-        $jmlQuota = 0;
-        $id = null;
         foreach ($x as $v) {
-            if ($v->composisi != 0) {
+            if ($v->composisi != 0) { // jika di tanggal komposisi tidak kosong
                     $x = ($v->composisi - $jml);
-                    if ($x > 0) {
+                    if ($x < 0) { // jika pengurangan komposisi tidak minus
+                        $q = $this->QuotaGas->find($v->id);
+                        $q->composisi = 0;
+                        $q->save();
+                    }else{
                         $jmlQuota += $x;
-                        $id = $v->id;
+                        $q = $this->QuotaGas->find($v->id);
+                        $q->composisi = $x;
+                        $q->save();
+                        break;
                     }
             }
-        }
-        $q = $this->QuotaGas->find($id);
-        $q->composisi = $jmlQuota;
-        $q->save();
+        }        
     }
     public function user_check($str)
     {

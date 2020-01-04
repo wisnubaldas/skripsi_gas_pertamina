@@ -12,7 +12,7 @@ $config['sidebar'] = [
 			'url' => 'javascript:;',
 			'caret' => true,
 			'sub_menu' => [[
-				'url' => route('master.customer'),
+				'url' => route('pangkalan.index'),
 				'title' => 'Pangkalan'
 			],[
 				'url' => route('master.courier'),
@@ -31,7 +31,7 @@ $config['sidebar'] = [
 			'caret' => true,
 			'sub_menu' => [
 				[
-					'url' => route('order'),
+					'url' => route('notif_gas.index'),
 					'title' => 'Notif Gas Pertamina'
 				],
 				[

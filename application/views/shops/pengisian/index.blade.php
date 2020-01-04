@@ -39,15 +39,11 @@
 					<table id="data-table-combine" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-								@foreach ($biji->kolom as $i)
-									@switch($i)
-										@case('user_id')
-											
-											@break
-										@default
-										<th scope="col">{{str_replace('_',' ',strtoupper($i))}}</th>
-									@endswitch
-								@endforeach
+									<th scope="col">Date</th>
+									<th scope="col">Composisi</th>
+									<th scope="col">Kurir/Driver</th>
+									<th scope="col">Keterangan</th>
+									<th scope="col">Status</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -65,12 +61,6 @@
 @push('css')
 	<link href="{{base_url('/assets/plugins/datatables/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
 	<link href="{{base_url('/assets/plugins/datatables/css/buttons/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
-	{{-- <link href="{{base_url('/assets/plugins/datatables/css/autoFill/autoFill.bootstrap4.css')}}" rel="stylesheet" /> --}}
-	{{-- <link href="{{base_url('/assets/plugins/datatables/css/colReorder/colReorder.bootstrap4.css')}}" rel="stylesheet" /> --}}
-	{{-- <link href="{{base_url('/assets/plugins/datatables/css/keyTable/keyTable.bootstrap4.css')}}" rel="stylesheet" /> --}}
-	{{-- <link href="{{base_url('/assets/plugins/datatables/css/rowReorder/rowReorder.bootstrap4.css')}}" rel="stylesheet" /> --}}
-	{{-- <link href="{{base_url('/assets/plugins/datatables/css/responsive/responsive.bootstrap4.css')}}" rel="stylesheet" /> --}}
-	{{-- <link href="{{base_url('/assets/plugins/datatables/css/select/select.bootstrap4.css')}}" rel="stylesheet" /> --}}
 @endpush
 
 @push('scripts')
@@ -78,13 +68,6 @@
 	<script src="{{base_url('/assets/plugins/datatables/js/dataTables.bootstrap4.js')}}"></script>
 	<script src="{{base_url('/assets/plugins/datatables/js/buttons/dataTables.buttons.min.js')}}"></script>
 	<script src="{{base_url('/assets/plugins/datatables/js/buttons/buttons.bootstrap4.min.js')}}"></script>
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/autoFill/dataTables.autoFill.js')}}"></script> --}}
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/autoFill/autoFill.bootstrap4.js')}}"></script> --}}
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/keyTable/dataTables.keyTable.js')}}"></script> --}}
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/rowReorder/dataTables.rowReorder.js')}}"></script> --}}
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/colReorder/dataTables.colReorder.js')}}"></script> --}}
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/responsive/dataTables.responsive.js')}}"></script> --}}
-	{{-- <script src="{{base_url('/assets/plugins/datatables/js/responsive/responsive.bootstrap4.js')}}"></script> --}}
 	<script>
 		const g = "{{route('pengisian.grid')}}"
 		$(document).ready(function() {
@@ -93,12 +76,9 @@
 				serverSide: true,
 				ajax: g,
 				responsive: true,
-				// autoFill: true,
-				// colReorder: true,
-				// keys: true,
-				// rowReorder: true,
 				select: true,
 				dom: 'Bfrtip',
+				"order": [[ 0, "desc" ]],
 				buttons: [
 					{
 						text: 'Buat Jadwal',

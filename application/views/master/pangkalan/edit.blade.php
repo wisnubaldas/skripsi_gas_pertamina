@@ -44,38 +44,22 @@
         <h4 class="panel-title">Edit Data</h4>
 		</div>
 		<div class="panel-body">
-        <form action="{{route('master.courier.edit',$courier->id)}}" method="POST">
+        <form action="{{route('master.customer.edit',$customer->id)}}" method="POST">
             <fieldset>
                 <div class="row">
-                    @foreach ($courier->toArray() as $i => $a)
-                        @if ($i == 'id')
-                        @elseif ($i == 'users_id')
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="{{$i}}">{{ucfirst($i)}}</label>
-                                <select class="default-select2 form-control" name="{{$i}}" id="{{$i}}">
-                                    @foreach ($user as $it)
-                                        @if ($it->id == $a)
-                                            <option value="{{$it->id}}" selected>{{$it->username}}</option>
-                                        @else
-                                            <option value="{{$it->id}}">{{$it->username}}</option>
-                                        @endif
-                                    @endforeach
-                                  </select>
+                    @foreach ($customer->toArray() as $i => $a)
+                        @if ($i !== 'id')
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="{{$i}}">{{ucfirst($i)}}</label>
+                                    <input type="text" name="{{$i}}" class="form-control" id="{{$i}}" value="{{$a}}" />
+                                </div>
                             </div>
-                        </div>
-                        @else
-                        <div class="col-4">
-                            <div class="form-group">
-                                <label for="{{$i}}">{{ucfirst($i)}}</label>
-                                <input type="text" name="{{$i}}" class="form-control" id="{{$i}}" value="{{$a}}" />
-                            </div>
-                        </div>
                         @endif
                     @endforeach
                 </div>
                 <button type="submit" class="btn btn-sm btn-primary m-r-5">Save</button>
-                <a href="{{route('master.courier')}}" class="btn btn-sm btn-default">Cancel</a>
+                <a href="{{route('master.customer')}}" class="btn btn-sm btn-default">Cancel</a>
             </fieldset>
         </form>
 		</div>
@@ -85,17 +69,12 @@
 @endsection
 
 @push('css')
-<link href="{{base_url('assets/plugins/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
+	
 @endpush
 @push('scripts')
-<script src="{{base_url('assets/plugins/select2/dist/js/select2.min.js')}}"></script>
 	<script>
 		$(document).ready(function() {
-            $("#users_id").select2();
-
 			$('.note-warning').fadeOut(6000)
-
-
 		});
 	</script>
 @endpush

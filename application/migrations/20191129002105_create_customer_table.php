@@ -35,7 +35,7 @@ class Migration_create_customer_table extends CI_Migration
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8");
 
         // create data dummy
-        for ($i=0; $i < 20; $i++) { 
+        for ($i=0; $i < 10; $i++) { 
             $this->generateData();
         }
         

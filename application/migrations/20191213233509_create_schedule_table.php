@@ -1,6 +1,8 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 
 class Migration_create_schedule_table extends CI_Migration
 {

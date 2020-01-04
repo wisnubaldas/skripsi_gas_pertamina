@@ -43,12 +43,12 @@
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 			</div>
-		<a class="btn btn-xs btn-success col-1" href="{{route('master.courier.create')}}">
-					<span class="fa-stack">
-						<i class="fa fa-terminal"></i>
-					</span>
-				ADD
-			</a>
+			<h5 class="panel-title">
+			<span class="fa-stack">
+				<i class="fa fa-terminal"></i>
+			</span>
+			</h5>
+			
 		</div>
 		<div class="panel-body">
 			{{-- @dump($customer) --}}
@@ -56,11 +56,12 @@
                         <thead>
                           <tr>
 							<th scope="col">No</th>
-							<th scope="col">Nama</th>
-							<th scope="col">Tipe Angkutan</th>
-							<th scope="col">Phone</th>
-							<th scope="col">Angkutan</th>
-							<th scope="col">Action :</th>
+							<th scope="col">Tanggal</th>
+							<th scope="col">Komposisi</th>
+							<th scope="col">Satuan</th>
+							<th scope="col">Keterangan</th>
+							<th scope="col">Status</th>
+							<th scope="col">Action</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -74,38 +75,49 @@
 @endsection
 
 @push('css')
-	<link href="{{base_url('/assets/plugins/datatables/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
-	<link href="{{base_url('/assets/plugins/datatables/css/autoFill/autoFill.bootstrap4.css')}}" rel="stylesheet" />
-	<link href="{{base_url('/assets/plugins/datatables/css/colReorder/colReorder.bootstrap4.css')}}" rel="stylesheet" />
-	<link href="{{base_url('/assets/plugins/datatables/css/keyTable/keyTable.bootstrap4.css')}}" rel="stylesheet" />
-	<link href="{{base_url('/assets/plugins/datatables/css/rowReorder/rowReorder.bootstrap4.css')}}" rel="stylesheet" />
-	<link href="{{base_url('/assets/plugins/datatables/css/responsive/responsive.bootstrap4.css')}}" rel="stylesheet" />
-	<link href="{{base_url('/assets/plugins/datatables/css/select/select.bootstrap4.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/datatables/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
+<link href="{{base_url('/assets/plugins/datatables/css/buttons/buttons.bootstrap4.min.css')}}" rel="stylesheet" />
 @endpush
 
 @push('scripts')
-	<script src="{{base_url('/assets/plugins/datatables/js/jquery.dataTables.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/dataTables.bootstrap4.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/autoFill/dataTables.autoFill.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/autoFill/autoFill.bootstrap4.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/keyTable/dataTables.keyTable.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/rowReorder/dataTables.rowReorder.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/colReorder/dataTables.colReorder.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/responsive/dataTables.responsive.js')}}"></script>
-	<script src="{{base_url('/assets/plugins/datatables/js/responsive/responsive.bootstrap4.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/jquery.dataTables.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/dataTables.bootstrap4.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/buttons/dataTables.buttons.min.js')}}"></script>
+<script src="{{base_url('/assets/plugins/datatables/js/buttons/buttons.bootstrap4.min.js')}}"></script>
 	<script>
-		const g = "{{route('courier.grid')}}"
+		const g = "{{route('notif_gas.grid')}}";
+		function destroy(url) {
+			axios.delete(url)
+						.then(function (response) {
+							// handle success
+							window.location.replace("{{route('notif_gas.index')}}");
+						})
+						.catch(function (error) {
+							// handle error
+							console.log(error);
+						})
+						.finally(function () {
+							// always executed
+						});
+		}
+		
 		$(document).ready(function() {
 			$('#data-table-combine').DataTable({
 				processing: true,
 				serverSide: true,
 				ajax: g,
 				responsive: true,
-				// autoFill: true,
-				// colReorder: true,
-				// keys: true,
-				// rowReorder: true,
-				select: true
+				dom: 'Bfrtip',
+				"order": [[ 1, "desc" ]],
+				buttons: [
+					{
+						text: 'Buat Stok Gas',
+						className:'btn btn-sm btn-primary',
+						action: function ( e, dt, node, config ) {
+							window.location.replace("{{route('notif_gas.create')}}");
+						}
+					}
+				]
 			});
 
 			$('.note-warning').fadeOut(6000)

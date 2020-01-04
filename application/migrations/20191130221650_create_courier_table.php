@@ -44,13 +44,17 @@ class Migration_create_courier_table extends CI_Migration
                     'type' => 'VARCHAR',
                     'constraint' => '100',
                 ),
+                'type_angkutan' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
         ));
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_key('users_id');
         $this->dbforge->create_table('couriers');
 
         // create data dummy
-        for ($i=0; $i < 100; $i++) { 
+        for ($i=0; $i < 7; $i++) { 
             $this->generateData();
         }
 
@@ -67,14 +71,17 @@ class Migration_create_courier_table extends CI_Migration
     protected function generateData()
     {
         $faker = Faker::create('id_ID');
+        $faker->addProvider(new \Faker\Provider\Fakecar($faker));
+
         $users_id = 1;
-        $name = $faker->name($gender = 'male'|'female');
+        $name = $faker->vehicleRegistration('[B]{1}[0-9]{4}[A-Z]{3}').'_'.$faker->vehicle;
         $wrapping_message = $faker->text($maxNbChars = 50);
         $firstname = $faker->firstname;
         $lastname = $faker->lastname;
         $email = $faker->email;
         $phone = $faker->e164PhoneNumber;
-        $dd = compact('users_id','name','wrapping_message','firstname','lastname','email','phone');
+        $type_angkutan =$faker->vehicleFuelType;
+        $dd = compact('users_id','name','wrapping_message','firstname','lastname','email','phone','type_angkutan');
         $this->db->insert('couriers', $dd);
     }
 }
