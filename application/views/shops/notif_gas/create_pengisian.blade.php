@@ -32,6 +32,13 @@
             </blockquote>
         </div>
     </div>
+    <div class="card card-inverse bg-gradient-black">
+        <div class="card-block">
+                <dl class="dl-horizontal" id="courierData">
+                    
+                </dl>
+        </div>
+    </div>
     <!-- end card -->
 </div>
 
@@ -77,6 +84,7 @@
                                 <div class="form-group">
                                         <label for="courier">Kurir/Driver</label>
                                         <select class="default-select2 form-control" type="text" name="courier_id">
+                                            <option selected >:: Courier/Driver ::</option>
                                             @foreach ($courier as $item)
                                                 <option value="{{$item['id']}}">{{$item['text']}}</option>
                                             @endforeach
@@ -118,8 +126,26 @@
 <script src="{{base_url('assets/plugins/moment/moment.js')}}"></script>
 <script src="{{base_url('assets/plugins/select2/dist/js/select2.min.js')}}"></script>
 	<script>
+        let courierData = @json($courierData);
         jQuery(function() {
             $(".default-select2").select2();
+            $(".default-select2").on('select2:select',function(a){
+                courierData.forEach(el => {
+                    if (el.id == a.params.data.id) {
+                            console.log(el)
+                            const tpl = '<dt class="text-orange f-s-17 ">Unit Kendaraan</dt> \
+                                         <dd>'+el.name+'</dd> \
+                                         <dt class="text-orange f-s-17">Tipe Bahan Bakar</dt> \
+                                         <dd>'+el.type_angkutan+'</dd> \
+                                         <dt class="text-orange f-s-17">Driver</dt> \
+                                         <dd>'+el.firstname+' '+el.lastname+'</dd> \
+                                         <dt class="text-orange f-s-17">Contact</dt> \
+                                         <dd>Phone: '+el.phone+'; <br> Email: '+el.email+'</dd>'
+                            $('#courierData').html(tpl)
+                    }
+                });
+            })
+
             $('.note-danger').fadeOut(6000);
             
                 let k = "{{$data->composisi}}";

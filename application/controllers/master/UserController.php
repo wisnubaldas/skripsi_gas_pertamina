@@ -26,7 +26,8 @@ class UserController extends CI_Controller {
             $this->simple_auth->createUser(
                 $this->input->post() 
             );
-            redirect($_SERVER['HTTP_REFERER']);
+            $this->session->set_flashdata('msg', 'Sukses insert data user');
+            redirect(route('user.index'));
         } catch (\Throwable $th) {
             return show_error('error insert data',500);
         }
@@ -45,7 +46,23 @@ class UserController extends CI_Controller {
     {
         $j = $this->griddata
                 ->field(['id','first_name','last_name','username','gender','email','role','active','created_at'])
-				->table('users')
+                ->table('users')
+                ->edit('active',function($d){
+                    if($d['active'] == 1)
+                    {
+                        return '<a href="#" class="btn btn-lime btn-sm active btn-block">Active</a>';
+                    }else{                        
+                        return '<a href="#" class="btn btn-grey active btn-sm btn-block">Idle</a>';
+                    }
+                })
+                ->edit('gender',function ($d)
+                {
+                    if ($d['gender'] == 'm') {
+                        return '<a href="#" class="btn btn-info btn-sm active btn-block">Male</a>';
+                    }else{
+                        return '<a href="#" class="btn btn-purple btn-sm active btn-block">Female</a>';
+                    }
+                })
                 ->add('action',function($data){
                 	$btn = '<div class="btn-group">';
                     $btn .= '<a href="'. route('user.edit',$data['id']).'" class="btn btn-sm btn-warning m-b-2">Edit</a>';

@@ -82,7 +82,7 @@
                                                 <label for="{{$item}}">{{strtoupper($item)}}</label>
                                                 <select class="default-select2 form-control" type="text" name="{{$item}}">
                                                     @foreach ($kurir as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                        <option value="{{$item->id}}">{{$item->name}}</option>
                                                     @endforeach
                                                 </select>
                                         </div>
@@ -140,7 +140,7 @@
                             data:{tanggal:$(this).val()},
                             method: "POST",
                             beforeSend: function(e) {
-
+                                k = 0
                                         }
                             })
                             .done(function(a) {

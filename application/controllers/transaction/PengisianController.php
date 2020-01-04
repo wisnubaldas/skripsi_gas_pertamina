@@ -120,24 +120,27 @@ class PengisianController extends CI_Controller {
 
     protected function kurangin_stok_gas($jml,$date)
     {
+        
         $date = strtotime($date);
         $x = $this->QuotaGas->whereYear('tgl','=',date('Y',$date))
                     ->whereMonth('tgl','=',date('m',$date))
                     ->get();
-        $jmlQuota = 0;
-        $id = null;
         foreach ($x as $v) {
             if ($v->composisi != 0) { // jika di tanggal komposisi tidak kosong
                     $x = ($v->composisi - $jml);
-                    if ($x > 0) { // jika pengurangan komposisi tidak minus
+                    if ($x < 0) { // jika pengurangan komposisi tidak minus
+                        $q = $this->QuotaGas->find($v->id);
+                        $q->composisi = 0;
+                        $q->save();
+                    }else{
                         $jmlQuota += $x;
-                        $id = $v->id;
+                        $q = $this->QuotaGas->find($v->id);
+                        $q->composisi = $x;
+                        $q->save();
+                        break;
                     }
             }
-        }
-        $q = $this->QuotaGas->find($id);
-        $q->composisi = $jmlQuota;
-        $q->save();
+        }        
     }
     public function user_check($str)
     {

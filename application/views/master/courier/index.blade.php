@@ -57,6 +57,7 @@
                           <tr>
 							<th scope="col">No</th>
 							<th scope="col">Nama</th>
+							<th scope="col">Tipe Angkutan</th>
 							<th scope="col">Phone</th>
 							<th scope="col">Angkutan</th>
 							<th scope="col">Action :</th>

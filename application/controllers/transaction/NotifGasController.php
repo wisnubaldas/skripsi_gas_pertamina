@@ -46,6 +46,16 @@ class NotifGasController extends CI_Controller {
           $j = $this->griddata
                   ->field($this->QuotaGas->kolom)
                   ->table('quota_gases')
+                  ->edit('status',function($d){
+                      if($d['status'] == 'complete')
+                      {
+                        return '<a href="#" class="btn btn-success btn-sm active btn-block">'.$d['status'].'</a>';
+                      }elseif($d['status'] == 'proses'){
+                        return '<a href="#" class="btn btn-primary btn-sm active btn-block">on '.$d['status'].'</a>';
+                      }else{
+                        return '';
+                      }
+                  })
                   ->add('edit',function($data){
                     $parse = [
                       'id'=>$data['id'],
@@ -84,13 +94,15 @@ class NotifGasController extends CI_Controller {
       ];
       $data = (object)['tgl'=>$tgl,'id'=>$id,'composisi'=>$composisi];
       $courier = $this->Couriers::all()->map(function($d){ return ['id'=>$d->id,'text'=>$d->name]; });
-      return $this->blade_view->render('shops.notif_gas.create_pengisian',compact('label','data','courier'));
+      $courierData = $this->Couriers::select(['id','name','firstname','lastname','email','phone','type_angkutan'])->get();
+      return $this->blade_view->render('shops.notif_gas.create_pengisian',compact('label','data','courier','courierData'));
     }
     public function store_pengisian()
     {
       $data = $this->input->post();
       $data['status'] = 'proses';
       $data['created_at'] = Carbon::parse('now','Asia/Jakarta');
+      $data['user_id'] = $this->simple_auth->user()->id;
       $idQuota = $data['id_quota_gas'];
       unset($data['id_quota_gas']);
       $this->Pengisian_model::insert($data);

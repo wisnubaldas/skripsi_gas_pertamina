@@ -64,7 +64,11 @@ if(ci()->session->flashdata('msg')){
                         <div class="form-group row m-b-15">
 							<label class="col-md-4 col-sm-4 col-form-label">Roles</label>
 							<div class="col-md-8 col-sm-8">
-								<input class="form-control" type="text" id="role" name="role" data-parsley-required="true" />
+								<select class="form-control" id="role" name="role" data-parsley-required="true">
+									<option value="operator">Opertor</option>
+									<option value="driver">Driver</option>
+									<option value="staff">Staff</option>
+								</select>
 							</div>
                         </div>
                     </div>
@@ -88,9 +92,16 @@ if(ci()->session->flashdata('msg')){
 							</div>
                         </div>
                         <div class="form-group row m-b-15">
-							<label class="col-md-4 col-sm-4 col-form-label">Active</label>
+							<label class="col-md-4 col-sm-4 col-form-label">Status</label>
 							<div class="col-md-8 col-sm-8">
-								<input class="form-control" type="text" id="active" name="active" data-parsley-required="true" />
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="active" id="defaultInlineRadio1" value="1" checked="">
+										<label class="form-check-label" for="defaultInlineRadio1">Active</label>
+									</div>
+									<div class="form-check form-check-inline">
+										<input class="form-check-input" type="radio" name="active" id="defaultInlineRadio2" value="0">
+										<label class="form-check-label" for="defaultInlineRadio2">Idle</label>
+									</div>
 							</div>
                         </div>
                     </div>

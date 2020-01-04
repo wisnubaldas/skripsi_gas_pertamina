@@ -7,6 +7,7 @@ class CourierController extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('Couriers');
+		$this->load->model('Users');
 		$this->load->library('user_agent');
 	}
 
@@ -42,7 +43,8 @@ class CourierController extends CI_Controller {
 		if ($this->input->server('REQUEST_METHOD') == 'GET'){
 			$courier = $this->Couriers
 					->find($id);
-			return $this->blade_view->render('master.courier.edit',compact('courier'));
+			$user = $this->Users::all();
+			return $this->blade_view->render('master.courier.edit',compact('courier','user'));
 		}
 		else if ($this->input->server('REQUEST_METHOD') == 'POST'){
 			$dd = $this->Couriers
@@ -68,7 +70,11 @@ class CourierController extends CI_Controller {
                     $btn .= '</div>';
                     return $btn;
 				})
-				->hide('users_id')->hide('wrapping_message')->hide('firstname')->hide('lastname')->hide('email')
+				->edit('users_id',function($d){
+					$user = $this->Users::find($d['users_id']);
+					return $user->first_name.' '.$user->last_name;
+				})
+				->hide('wrapping_message')->hide('firstname')->hide('lastname')->hide('email')
                 ->generate();
         $this->output
                 ->set_content_type('application/json')

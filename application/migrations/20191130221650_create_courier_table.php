@@ -71,14 +71,16 @@ class Migration_create_courier_table extends CI_Migration
     protected function generateData()
     {
         $faker = Faker::create('id_ID');
+        $faker->addProvider(new \Faker\Provider\Fakecar($faker));
+
         $users_id = 1;
-        $name = $faker->name($gender = 'male'|'female');
+        $name = $faker->vehicleRegistration('[B]{1}[0-9]{4}[A-Z]{3}').'_'.$faker->vehicle;
         $wrapping_message = $faker->text($maxNbChars = 50);
         $firstname = $faker->firstname;
         $lastname = $faker->lastname;
         $email = $faker->email;
         $phone = $faker->e164PhoneNumber;
-        $type_angkutan =$faker->randomElement($array = array ('motor','truk','box','becak','odong-odong'));
+        $type_angkutan =$faker->vehicleFuelType;
         $dd = compact('users_id','name','wrapping_message','firstname','lastname','email','phone','type_angkutan');
         $this->db->insert('couriers', $dd);
     }
