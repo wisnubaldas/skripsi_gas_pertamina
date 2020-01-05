@@ -15,8 +15,8 @@
 		<!-- begin brand -->
 		<div class="login-header">
 			<div class="brand">
-				<span class="logo"></span> <b>Inventory</b> Gas
-				<small>silahkan login untuk memulai aplikasi</small>
+				<span class="logo"></span> <b>Distribusi</b> Gas
+				<small class="f-w-700">PT. CITRA TIARA MANDIRI</small>
 			</div>
 			<div class="icon">
 				<i class="fa fa-lock"></i>
@@ -56,7 +56,7 @@
 				</div>
 				@endif
 				<div class="login-buttons">
-					<button type="submit" class="btn btn-success btn-block btn-lg">Biarkan saya masuk Mah,</button>
+					<button type="submit" class="btn btn-success btn-block btn-lg">Login,</button>
 				</div>
 				<div class="m-t-20">
 					Not a member yet? Click <a href="javascript:;">here</a> to register.

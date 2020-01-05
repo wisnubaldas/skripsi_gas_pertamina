@@ -24,6 +24,7 @@ class CourierController extends CI_Controller {
 		}
 		else if ($this->input->server('REQUEST_METHOD') == 'POST'){
 			$id = $this->Couriers->insert($this->input->post());
+			
 			if($id)
 			{
 				$this->session->set_flashdata('msg', 'Sukses memanjingkan data...!!');

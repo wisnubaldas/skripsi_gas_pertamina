@@ -34,3 +34,9 @@ Setup
     ```
 -   Buka broser aplikasi localhost, sesuaikan dengan nama project yang di buat, 
     ```http://localhost/skripsi/tracking``` login dengan user ```admin@admin.com``` dan password ```admin```
+
+    Aplikasi yang digunakan berbasis web
+    bahasa yang pake 
+    PHP (script yang jalan di sisi server)
+    Javascript, html, css (jalan di sisi client --browser)
+

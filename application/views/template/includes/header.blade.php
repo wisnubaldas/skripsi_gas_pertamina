@@ -9,7 +9,7 @@
 <div id="header" class="header {{ $headerClass }}">
 	<!-- begin navbar-header -->
 	<div class="navbar-header">
-		<a href="{{route('homepage')}}" class="navbar-brand"><span class="navbar-logo"></span> <b>{{env('APP_NAME')}}</b> Apps</a>
+	<a href="{{route('homepage')}}" class="navbar-brand"><span class="navbar-logo"></span> <b>{{env('APP_NAME')}}</b> {{env('COMPANY_NAME')}}</a>
 		@if (!$sidebarHide)
 		<button type="button" class="navbar-toggle" data-click="sidebar-toggled">
 			<span class="icon-bar"></span>
@@ -137,7 +137,7 @@
 		<li class="dropdown navbar-user">
 			@if(!$guest)
 				<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
-					<img src="{{base_url('assets/img/user/user-11.jpg')}}" alt="" />
+					<img src="{{base_url('assets/img/user/user2.png')}}" alt="" />
 					<span class="d-none d-md-inline">{{ci()->simple_auth->user()->first_name}}</span> <b class="caret"></b>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">

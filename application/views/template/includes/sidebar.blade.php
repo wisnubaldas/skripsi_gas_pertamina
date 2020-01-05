@@ -1,5 +1,6 @@
 @php
 	$sidebarClass = (!empty($sidebarTransparent)) ? 'sidebar-transparent' : '';
+	$user_email = $_SESSION['tracking_auth']['user']['username'];
 @endphp
 <!-- begin #sidebar -->
 <div id="sidebar" class="sidebar {{ $sidebarClass }}">
@@ -11,12 +12,12 @@
 				<a href="javascript:;" data-toggle="nav-profile">
 					<div class="cover with-shadow"></div>
 					<div class="image">
-						<img src="{{base_url('/assets/img/user/user-13.jpg')}}" alt="" />
+						<img src="{{base_url('/assets/img/user/user2.png')}}" alt="" />
 					</div>
 					<div class="info">
 						<b class="caret pull-right"></b>
-						Sean Ngu
-						<small>Front end developer</small>
+						{{$user_email}}
+						<small>{{env('COMPANY_NAME')}}</small>
 					</div>
 				</a>
 			</li>
