@@ -95,6 +95,21 @@
 	<script src="{{base_url('/assets/plugins/datatables/js/responsive/responsive.bootstrap4.js')}}"></script>
 	<script>
 		const g = "{{route('product.grid')}}"
+		function destroy(url) {
+			axios.delete(url)
+						.then(function (response) {
+							// handle success
+							window.location.replace("{{route('user.index')}}");
+						})
+						.catch(function (error) {
+							// handle error
+							console.log(error);
+						})
+						.finally(function () {
+							// always executed
+						});
+		}
+		
 		$(document).ready(function() {
 			$('#data-table-combine').DataTable({
 				processing: true,

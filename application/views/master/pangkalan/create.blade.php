@@ -8,16 +8,12 @@ if(ci()->session->flashdata('msg')){
 }
 @endphp
 @section('content')
-	<!-- begin breadcrumb -->
-	<ol class="breadcrumb pull-right">
-		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Page Options</a></li>
-		<li class="breadcrumb-item active">Blank Page</li>
-	</ol>
-	<!-- end breadcrumb -->
-	<!-- begin page-header -->
-	<h1 class="page-header">Blank Page <small>header small text goes here...</small></h1>
-	<!-- end page-header -->
+@include('template.includes.component.breadcrumb',['bc'=>[
+				['class'=>'','link'=>'#','name'=>'Home'],
+				['class'=>'','link'=>'#','name'=>'Master'],
+				['class'=>'active','link'=>'#','name'=>'Pangkalan Create'],
+			],
+			'title'=>'Pangkalan Gas','subtitle'=>'Create data Pangkalan'])
 	
 	<!-- begin panel -->
 	<div class="panel panel-inverse">
@@ -36,20 +32,48 @@ if(ci()->session->flashdata('msg')){
             </div>
         @endif
 		<div class="panel-body">
-            <form action="{{route('master.customer.create')}}" method="POST">
+            <form action="{{route('pangkalan.store')}}" method="POST">
                 <fieldset>
                     <div class="row">
-                        @for ($i = 0; $i < count($formInput); $i++)
-                            <div class="col-4">
-                                <div class="form-group">
-                                <label for="{{$formInput[$i]}}">{{ucfirst($formInput[$i])}}</label>
-                                    <input type="text" name="{{$formInput[$i]}}" class="form-control" />
-                                </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                            <label for="">No Registrasi</label>
+                            <input type="text" name="no_reg" id="no_reg" class="form-control" readonly value="{{strtoupper($no_reg)}}"/>
                             </div>
-                        @endfor
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                            <label for="">Nama Perusahaan</label>
+                            <input type="text" name="company" id="company" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                            <label for="">Alamat</label>
+                            <input type="text" name="address" id="address" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                            <label for="">Telepon</label>
+                            <input type="text" name="phone" id="phone" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                            <label for="">Wilayah</label>
+                            <input type="text" name="wilayah" id="wilayah" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                            <label for="">Keterangan</label>
+                            <textarea type="text" name="ket" id="ket" class="form-control" ></textarea>
+                            </div>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-sm btn-primary m-r-5">Save</button>
-                    <a href="{{route('master.customer')}}" class="btn btn-sm btn-default">Cancel</a>
+                    <a href="{{route('pangkalan.index')}}" class="btn btn-sm btn-default">Back</a>
                 </fieldset>
             </form>
 		</div>

@@ -123,3 +123,4 @@
 <div class="sidebar-bg"></div>
 <!-- end #sidebar -->
 
+{{-- @dump(get_defined_vars()) --}}

@@ -105,11 +105,15 @@ class PengisianController extends CI_Controller {
                     return "No Courier Available crot";
                 })
                 ->edit('status', function($data){
-                    if($data['status'] == null)
-                    {
-                        return 'No action';
+                    switch ($data['status']) {
+                        case 'proses':
+                            return "<a href='#' class='btn btn-success btn-sm'>Proses</a>";
+                            break;
+                        
+                        default:
+                            return 'No action';
+                            break;
                     }
-                    return $data['status'];
                 })
         ->hide('user_id')->hide('id')
         ->generate();

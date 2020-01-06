@@ -1,4 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+use Philo\Blade\Blade;
 
 class MY_Exceptions extends CI_Exceptions
 {
@@ -27,7 +28,11 @@ class MY_Exceptions extends CI_Exceptions
 			ob_end_flush();
 		}
 		ob_start();
-		include($templates_path.$template.'.blade.php');
+		$blade = new Blade(APPPATH.'views',APPPATH.'cache');
+		// $blade->compile('errors.html.error_404');
+		// dd($blade->view('errors.html.error_404'));
+		// include($templates_path.$template.'.blade.php');
+		echo '404';
 		$buffer = ob_get_contents();
 		ob_end_clean();
 		return $buffer;

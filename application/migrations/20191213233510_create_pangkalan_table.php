@@ -16,6 +16,10 @@ class Migration_create_pangkalan_table extends CI_Migration
                         'unsigned' => TRUE,
                         'auto_increment' => TRUE
                 ),
+                'no_reg' => array(
+                    'type' => 'VARCHAR',
+                    'constraint' => '100',
+                ),
                 'company' => array(
                     'type' => 'VARCHAR',
                     'constraint' => '100',
@@ -32,7 +36,7 @@ class Migration_create_pangkalan_table extends CI_Migration
                         'type' => 'TEXT',
                         'null' => TRUE,
                 ),
-                'type' => array(
+                'wilayah' => array(
                     'type' => 'VARCHAR',
                     'constraint' => '100',
                     'null' => TRUE,
@@ -60,12 +64,14 @@ class Migration_create_pangkalan_table extends CI_Migration
         $tgl = Carbon::now();
         try {
             $faker = Faker::create('id_ID');
+            $faker->addProvider(new \Faker\Provider\Payment($faker));
             $company =  $faker->company;
+            $no_reg = $faker->swiftBicNumber;
             $address = 'Jl.'.$faker->streetName.', '.$faker->address;
             $phone = $faker->e164PhoneNumber;
             $ket = $faker->sentence($nbWords = 10, $variableNbWords = true);
-            $type = $faker->randomElement($array = array ('industri','home','lainnya'));
-            $dd = compact('company','address','phone','ket','type');
+            $wilayah = $faker->randomElement(array ('C1','B1','A1'));
+            $dd = compact('company','address','phone','ket','wilayah','no_reg');
             $this->db->insert('pangkalan', $dd);
         } catch (\Throwable $th) {
             dump($th);

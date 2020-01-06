@@ -10,16 +10,12 @@
 @endphp
 	
 @section('content')
-	<!-- begin breadcrumb -->
-	<ol class="breadcrumb pull-right">
-		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Page Options</a></li>
-		<li class="breadcrumb-item active">Blank Page</li>
-	</ol>
-	<!-- end breadcrumb -->
-	<!-- begin page-header -->
-	<h1 class="page-header">Blank Page <small>header small text goes here...</small></h1>
-	<!-- end page-header -->
+@include('template.includes.component.breadcrumb',['bc'=>[
+	['class'=>'','link'=>'#','name'=>'Home'],
+	['class'=>'','link'=>'#','name'=>'Master'],
+	['class'=>'active','link'=>'#','name'=>'Create User'],
+],
+'title'=>'User Config','subtitle'=>'Create User'])
 	@if ($alert)
         <div class="note note-warning note-with-right-icon m-b-15" id="alert-update">
             <div class="note-icon"><i class="fa fa-lightbulb"></i></div>
@@ -36,20 +32,6 @@
     @endif
 	<!-- begin panel -->
 	<div class="panel panel-inverse">
-		<div class="panel-heading">
-			<div class="panel-heading-btn">
-				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
-				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-redo"></i></a>
-				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
-				<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
-			</div>
-			<h5 class="panel-title">
-			<span class="fa-stack">
-				<i class="fa fa-terminal"></i>
-			</span>
-			</h5>
-			
-		</div>
 		<div class="panel-body">
 			{{-- @dump($customer) --}}
                 <table id="data-table-combine" class="table table-striped table-bordered">

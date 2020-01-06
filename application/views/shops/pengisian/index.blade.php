@@ -39,7 +39,8 @@
 					<table id="data-table-combine" class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th scope="col">Date</th>
+									<th scope="col">Waktu Pengisian</th>
+									<th scope="col">Tanggal</th>
 									<th scope="col">Composisi</th>
 									<th scope="col">Kurir/Driver</th>
 									<th scope="col">Keterangan</th>
@@ -81,10 +82,10 @@
 				"order": [[ 0, "desc" ]],
 				buttons: [
 					{
-						text: 'Buat Jadwal',
+						text: '@',
 						className:'btn btn-sm btn-primary',
 						action: function ( e, dt, node, config ) {
-							window.location.replace("{{route('pengisian.create')}}");
+							// window.location.replace("{{route('pengisian.create')}}");
 						}
 					}
 				]

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pengisian_model extends Model
 {
     protected $table = 't_pengisian';
-    protected $filable = ['id', 'tgl', 'composisi', 'courier_id', 'user_id', 'ket','status'];
+    protected $filable = ['id','created_at', 'tgl', 'composisi', 'courier_id', 'user_id', 'ket','status'];
     
     public function __construct()
     {

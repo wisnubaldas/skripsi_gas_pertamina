@@ -8,16 +8,13 @@ if(ci()->session->flashdata('msg')){
 }
 @endphp
 @section('content')
-	<!-- begin breadcrumb -->
-	<ol class="breadcrumb pull-right">
-		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Page Options</a></li>
-		<li class="breadcrumb-item active">Blank Page</li>
-	</ol>
-	<!-- end breadcrumb -->
-	<!-- begin page-header -->
-	<h1 class="page-header">Blank Page <small>header small text goes here...</small></h1>
-	<!-- end page-header -->
+		
+@include('template.includes.component.breadcrumb',['bc'=>[
+	['class'=>'','link'=>'#','name'=>'Home'],
+	['class'=>'','link'=>'#','name'=>'Master'],
+	['class'=>'active','link'=>'#','name'=>'Create User'],
+],
+'title'=>'User Config','subtitle'=>'Create User'])
 	
 	<!-- begin panel -->
 	<div class="panel panel-inverse">

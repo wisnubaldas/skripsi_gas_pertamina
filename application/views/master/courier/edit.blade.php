@@ -8,16 +8,13 @@
         }
     @endphp
 @section('content')
-	<!-- begin breadcrumb -->
-	<ol class="breadcrumb pull-right">
-		<li class="breadcrumb-item"><a href="javascript:;">Home</a></li>
-		<li class="breadcrumb-item"><a href="javascript:;">Page Options</a></li>
-		<li class="breadcrumb-item active">Blank Page</li>
-	</ol>
-	<!-- end breadcrumb -->
-	<!-- begin page-header -->
-	<h1 class="page-header">Blank Page <small>header small text goes here...</small></h1>
-	<!-- end page-header -->
+@include('template.includes.component.breadcrumb',['bc'=>[
+				['class'=>'','link'=>'#','name'=>'Home'],
+				['class'=>'','link'=>'#','name'=>'Master'],
+				['class'=>'active','link'=>'#','name'=>'Angkutan Tabung Gas'],
+			],
+            'title'=>'Angkutan Tabung Gas','subtitle'=>'Edit data angkutan'])
+            
 	@if ($alert)
         <div class="note note-warning note-with-right-icon m-b-15" id="alert-update">
             <div class="note-icon"><i class="fa fa-lightbulb"></i></div>
@@ -97,5 +94,16 @@
 
 
 		});
-	</script>
+    </script>
+    	<script>
+            jQuery(function() {
+                // let ll = $('.sub-menu').find('a')
+                // for (const d in ll) {
+                //     if (ll.hasOwnProperty(d)) {
+                //         const el = ll[d];
+                //         console.log(el.href)
+                //     }
+                // }
+            })
+        </script>
 @endpush
