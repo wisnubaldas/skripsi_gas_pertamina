@@ -69,7 +69,7 @@ class NotifGasController extends CI_Controller {
                       }else{
                         $action .= '<a href="'. route('notif_gas.create_pengisian',$parse).'" class="btn btn-sm btn-success m-b-2">Buat Jadwal</a>';
                       }
-                      $action .= '<a href="#" onClick="destroy(`'.route('notif_gas.destroy',$data['id']).'`)" class="btn btn-sm btn-danger m-b-2">Hapus Notif</a>';
+                      // $action .= '<a href="#" onClick="destroy(`'.route('notif_gas.destroy',$data['id']).'`)" class="btn btn-sm btn-danger m-b-2">Hapus Notif</a>';
                       $action .= '</div>';
                       return $action;
                   })

@@ -20,7 +20,8 @@ class CourierController extends CI_Controller {
 	{
 		if ($this->input->server('REQUEST_METHOD') == 'GET'){
 			$formInput = $this->Couriers->kolom;
-			return $this->blade_view->render('master.courier.create',compact('formInput'));
+			$user = $this->Users::select(['id','first_name','last_name'])->where('username','!=','admin')->get();
+			return $this->blade_view->render('master.courier.create',compact('formInput','user'));
 		}
 		else if ($this->input->server('REQUEST_METHOD') == 'POST'){
 			$id = $this->Couriers->insert($this->input->post());

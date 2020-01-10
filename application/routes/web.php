@@ -50,10 +50,11 @@ Route::group(sha_url('transaksi'),['namespace' => 'transaction','middleware' => 
 		Route::post('get_quota_gas','PengisianController@get_quota_gas')->name('pengisian.getQuota');
 
 	});
-	Route::group('distribusi',function()
+	Route::group(sha_url('distribusi'),function()
 	{
-		Route::get('/','DistribusiGasController@index')->name('distribusi');
-		Route::match(['GET', 'POST'],'create','DistribusiGasController@create')->name('distribusi.create');
+		Route::resource('distribusi','DistribusiGasController');
+		// Route::get('/','DistribusiGasController@index')->name('distribusi');
+		// Route::match(['GET', 'POST'],'create','DistribusiGasController@create')->name('distribusi.create');
 	});
 });
 

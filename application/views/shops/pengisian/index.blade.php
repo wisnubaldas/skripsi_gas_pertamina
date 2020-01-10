@@ -42,7 +42,7 @@
 									<th scope="col">Waktu Pengisian</th>
 									<th scope="col">Tanggal</th>
 									<th scope="col">Composisi</th>
-									<th scope="col">Kurir/Driver</th>
+									<th scope="col">Nomor Kendaraan</th>
 									<th scope="col">Keterangan</th>
 									<th scope="col">Status</th>
 								</tr>

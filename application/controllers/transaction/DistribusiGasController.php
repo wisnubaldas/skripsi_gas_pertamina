@@ -11,7 +11,7 @@ class DistribusiGasController extends CI_Controller {
         $this->load->model('Distribusi_model');
         $this->load->model('Couriers');
         $this->load->model('Customers');
-        
+        $this->load->model(['Pengisian_model'=>'t_pengisian']);
     }
     
     public function index()
@@ -24,8 +24,46 @@ class DistribusiGasController extends CI_Controller {
         return $this->blade_view->render('shops.distribusi.create',$this->atribute());
     }
 
+    public function store()
+    {
+        $jsonArray = json_decode(file_get_contents('php://input'),true); 
+        $data = [];
+        foreach ($jsonArray['params'] as $v) {
+            $data[$v['name']] = $v['value'];
+        }
+        $save = new Distribusi_model;
+        $chek = $save::where('t_pengisian_id','=',$data['t_pengisian_id'])->first();
+        if(!$chek)
+        {
+            $save->pangkalan_id = $data['pangkalan_id'];
+            $save->rumahtangga = $data['rumahtangga'];
+            $save->t_pengisian_id = $data['t_pengisian_id'];
+            $save->ukm = $data['ukm'];
+            $save->other = $data['other'];
+            $save->save();
+            // update status
+            $update = Pengisian_model::find($data['t_pengisian_id']);
+            $update->status = "complete";
+            $update->save();
+            if($save->id)
+            {
+                $arr = [
+                        'status'=>'sukses insert data',
+                        'message'=>'data berhasil di insert ya',
+                        't_pengisian_id'=> $data['t_pengisian_id']
+                        ];
+                
+                header('Content-Type: application/json');
+                echo json_encode($arr);
+                return true;
+            }
+        }
+        return show_error('tidak dapat insert',500);
+    }
+
     protected function atribute()
     {
+        $data['pengisian'] = $this->t_pengisian::where('status','=','proses')->get();
         $data['pangkalan'] = $this->Customers->all();
         $data['tabel'] = $this->Distribusi_model->nama_tabel;
         $data['kolom'] = $this->Distribusi_model->kolom;

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Distribusi_model extends Model
 {
     protected $table = 't_distribusi';
-    protected $filable = ['id', 'customers_id', 'bobot'];
-    public $timestamps = false;
+    protected $filable = ['id', 'pangkalan_id', 'rumahtangga','t_pengisian_id','ukm','other'];
+    public $timestamps = true;
     public $kolom;
     public $nama_tabel;
     public function __construct()

@@ -34,7 +34,8 @@
         "mbezhanov/faker-provider-collection": "^1.2",
         "ozdemir/datatables": "^2.2",
         "nesbot/carbon": "^1.39.1",
-        "pelmered/fake-car": "^1.4"
+        "pelmered/fake-car": "^1.4",
+        "dompdf/dompdf": "^0.8.3"
     },
     "suggest": {
         "paragonie/random_compat": "Provides better randomness in PHP 5.x"

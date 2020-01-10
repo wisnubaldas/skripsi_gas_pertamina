@@ -39,11 +39,11 @@ $config['sidebar'] = [
 					'title' => 'Jadwal Pengisian Gas'
 				],
 				[
-					'url' => route('distribusi.create'),
+					'url' => route('distribusi.index'),
 					'title' => 'Distribusi Gas Pangkalan'
 				],
 				[
-					'url' => route('distribusi'),
+					'url' => '#',
 					'title' => 'Notif Eceran Pangkalan'
 				],
 			]
