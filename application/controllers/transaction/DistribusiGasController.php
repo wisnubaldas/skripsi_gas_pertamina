@@ -61,6 +61,11 @@ class DistribusiGasController extends CI_Controller {
         return show_error('tidak dapat insert',500);
     }
 
+    public function detail_distribusi($data)
+    {
+        
+        return $this->blade_view->render('shops.distribusi.detail');
+    }
     protected function atribute()
     {
         $data['pengisian'] = $this->t_pengisian::where('status','=','proses')->get();
@@ -86,6 +91,7 @@ class DistribusiGasController extends CI_Controller {
         ];
         return (object) $data;
     }
+    
 
 }
 

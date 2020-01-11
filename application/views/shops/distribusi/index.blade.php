@@ -255,33 +255,6 @@
                 autoclose: true,
                 dateFormat: "yy-mm-dd"
             });
-
         })
-
-		// const g = "{{route('pengisian.grid')}}"
-		// $(document).ready(function() {
-		// 	$('#data-table-combine').DataTable({
-		// 		processing: true,
-		// 		serverSide: true,
-		// 		ajax: g,
-		// 		responsive: true,
-		// 		// autoFill: true,
-		// 		// colReorder: true,
-		// 		// keys: true,
-		// 		// rowReorder: true,
-		// 		select: true,
-		// 		dom: 'Bfrtip',
-		// 		buttons: [
-		// 			{
-		// 				text: 'Buat Jadwal',
-		// 				className:'btn btn-sm btn-primary',
-		// 				action: function ( e, dt, node, config ) {
-		// 					window.location.replace("{{route('pengisian.create')}}");
-		// 				}
-		// 			}
-		// 		]
-		// 	});
-
-		// });
 	</script>
 @endpush

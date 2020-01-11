@@ -53,8 +53,7 @@ Route::group(sha_url('transaksi'),['namespace' => 'transaction','middleware' => 
 	Route::group(sha_url('distribusi'),function()
 	{
 		Route::resource('distribusi','DistribusiGasController');
-		// Route::get('/','DistribusiGasController@index')->name('distribusi');
-		// Route::match(['GET', 'POST'],'create','DistribusiGasController@create')->name('distribusi.create');
+		Route::get('distribusi/detail/{id}','DistribusiGasController@detail_distribusi')->name('distribusi.detail');
 	});
 });
 

@@ -109,7 +109,10 @@ class PengisianController extends CI_Controller {
                         case 'proses':
                             return "<a href='#' class='btn btn-success btn-sm'>Proses</a>";
                             break;
-                        
+                        case 'complete':
+                            $uri = route('distribusi.detail',$data['id']);
+                            return '<a href="'.$uri.'" class="btn btn-warning btn-sm">Deliver</a>';
+                        break;
                         default:
                             return 'No action';
                             break;
